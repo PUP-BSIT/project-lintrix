@@ -1,0 +1,19 @@
+<div class="container">
+    <h2>Email Authentication</h2>
+    <link rel="stylesheet" href="authentication.component.css">
+    <form (ngSubmit)="sendAuthCode()">
+      <div class="form-group">
+        <label for="email">Enter your email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email" required>
+        <button type="submit">Send Code</button>
+      </div>
+      <div class="form-group" id="codeGroup" *ngIf="codeSent">
+        <p id="codeMessage">Please enter the code you received:</p>
+        <label for="authCode">Enter the authentication code:</label>
+        <input type="text" id="authCode" name="authCode" [(ngModel)]="authCode" required>
+        <button type="button" (click)="verifyAuthCode()">Verify Code</button>
+      </div>
+    </form>
+    <div id="messageDisplay">{{ message }}</div>
+  </div>
+  
