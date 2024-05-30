@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { EmailAuthComponent } from './email-auth/email-auth.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    EmailAuthComponent
+    EmailAuthComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
