@@ -1,14 +1,36 @@
-<div class="container">
-  <h2>Sign Up</h2>
-  <form (ngSubmit)="onSubmit()">
-    <div>
-      <label for="email">Email</label>
-      <input type="email" id="email" [(ngModel)]="email" name="email" required>
+<h2>Create Account</h2>
+<form #accountForm="ngForm" (ngSubmit)="onSubmit">
+    <div class="form-row">
+        <div class="form-column">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" ngModel placeholder="Username" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" ngModel placeholder="Email" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" ngModel placeholder="Password" required>
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirmPassword" ngModel placeholder="Confirm Password" required>
+            <label for="university">Select University</label>
+            <input type="text" id="university" name="university" ngModel placeholder="Select University" required>
+        </div>
+        <div class="form-column">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="firstName" ngModel placeholder="First Name" required>
+            <label for="middle-name">Middle Name</label>
+            <input type="text" id="middle-name" name="middleName" ngModel placeholder="Middle Name">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="lastName" ngModel placeholder="Last Name" required>
+            <label for="birthday">Birthday</label>
+            <input type="date" id="birthday" name="birthday" ngModel required>
+            <label for="sex">Sex</label>
+            <select id="sex" name="sex" ngModel required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
     </div>
-    <div>
-      <label for="password">Password</label>
-      <input type="password" id="password" [(ngModel)]="password" name="password" required>
+    <div class="form-footer">
+        <button type="submit" [disabled]="accountForm.invalid">Sign Up</button>
     </div>
-    <button type="submit">Sign Up</button>
-  </form>
-</div>
+</form>
