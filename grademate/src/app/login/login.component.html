@@ -1,6 +1,6 @@
 <div class="container">
   <div class="left">
-    <h2>Login</h2>
+    <h2>Sign In</h2>
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
       <input
         type="email"
@@ -17,12 +17,16 @@
         name="password"
         required
       />
-      <a class="forgot-password" href="#">Forgot Password?</a>
-      <button type="submit" [disabled]="!loginForm.valid">Login</button>
+      <button (click)="navigate.emit('password-recovery')">
+            Forgot Password</button>
+      <button type="submit" [disabled]="!loginForm.valid">LOGIN</button>
+      <P>_________________OR_________________</P>
+      <button type="submit" [disabled]="!loginForm.valid">
+            LOGIN WITH GOOGLE</button>
     </form>
   </div>
   <div class="right">
     <h2>Welcome Back!</h2>
-    <button (click)="onSubmit()">Sign Up</button>
+    <button (click)="navigate.emit('signup')">Sign Up</button>
   </div>
 </div>
