@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #D8E6ED;
+    padding: 10px 20px;
+}
+
+.logo, .university-name, .user-info {
+    display: flex;
+    align-items: center;
+}
+
+.university-name {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.user-info {
+    gap: 10px;
+}
+
+.profile-pic {
+    width: 30px;
+    height: 30px;
+    background-color: #0097B2;
+    border-radius: 50%;
+}
+
+.container {
+    display: flex;
+    height: calc(100vh - 50px);
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #f4f4f4;
+    padding-top: 20px;
+}
+
+.menu-item {
+    padding: 15px 20px;
+    cursor: pointer;
+}
+
+.menu-item.active, .menu-item:hover {
+    background-color: #e0e0e0;
+    border-radius: 0 25px 25px 0;
+}
+
+.content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.no-records {
+    font-size: 20px;
+    color: #666;
+}
