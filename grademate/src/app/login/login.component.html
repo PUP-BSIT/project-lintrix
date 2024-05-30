@@ -17,8 +17,8 @@
         name="password"
         required
       />
-      <a class="forgot-password" href="#">Forgot Password?</a>
-      <button type="submit" [disabled]="!loginForm.valid">Login</button>
+    <button (click)="navigate.emit('password-recovery')">Forgot Password</button>
+    <button type="submit" [disabled]="!loginForm.valid">Login</button>
     </form>
   </div>
   <div class="right">
