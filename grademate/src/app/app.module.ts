@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { EmailAuthComponent } from './email-auth/email-auth.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LoginComponent,
     SignupComponent,
     EmailAuthComponent,
+    PasswordRecoveryComponent,
     DashboardComponent
   ],
   imports: [
