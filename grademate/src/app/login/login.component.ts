@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+// login.component.ts
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,14 +11,14 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  @Output() navigate = new EventEmitter<string>();
+  constructor(private router: Router) {}
 
   onSubmit() {
     if (this.email && this.password) {
       console.log('Email:', this.email);
       console.log('Password:', this.password);
-      this.navigate.emit('dashboard');
-      // Handle login logic here
+      // Handle login logic here, then navigate to dashboard
+      this.router.navigate(['/dashboard']);
     } else {
       console.log('Both email and password are required.');
     }
@@ -24,7 +26,11 @@ export class LoginComponent {
 
   onForgotPassword(event: Event) {
     event.preventDefault();
-    // Your forgot password logic here, for example:
+    // Implement forgot password logic here
     alert('Forgot password functionality not implemented yet.');
+  }
+
+  navigateToSignup() {
+    this.router.navigate(['/signup']);
   }
 }
