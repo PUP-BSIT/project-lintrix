@@ -1,15 +1,3 @@
-<div class="login" *ngIf="currentView === 'login'">
-  <app-login (navigate)="navigateTo($event)"></app-login>
-</div>
-
-<div class="signup" *ngIf="currentView === 'signup'">
-  <app-signup (navigate)="navigateTo($event)"></app-signup>
-</div>
-
-<div class="container" *ngIf="currentView === 'dashboard'">
-  <app-dashboard></app-dashboard>
-</div>
-
-<div class="password-recovery" *ngIf="currentView === 'password-recovery'">
-  <app-password-recovery (navigate)="navigateTo($event)"></app-password-recovery>
+<div class="container">
+  <router-outlet></router-outlet>
 </div>

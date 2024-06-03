@@ -1,36 +1,44 @@
-<h2>Create Account</h2>
-<form #accountForm="ngForm" (ngSubmit)="onSubmit">
-    <div class="form-row">
-        <div class="form-column">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" ngModel placeholder="Username" required>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" ngModel placeholder="Email" required>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" ngModel placeholder="Password" required>
-            <label for="confirm-password">Confirm Password</label>
-            <input type="password" id="confirm-password" name="confirmPassword" ngModel placeholder="Confirm Password" required>
-            <label for="university">Select University</label>
-            <input type="text" id="university" name="university" ngModel placeholder="Select University" required>
-        </div>
-        <div class="form-column">
-            <label for="first-name">First Name</label>
-            <input type="text" id="first-name" name="firstName" ngModel placeholder="First Name" required>
-            <label for="middle-name">Middle Name</label>
-            <input type="text" id="middle-name" name="middleName" ngModel placeholder="Middle Name">
-            <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" name="lastName" ngModel placeholder="Last Name" required>
-            <label for="birthday">Birthday</label>
-            <input type="date" id="birthday" name="birthday" ngModel required>
-            <label for="sex">Sex</label>
-            <select id="sex" name="sex" ngModel required>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-            </select>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
+</head>
+<body>
+  <div class="container">
+    <div class="right">
+      <h2>Welcome Back!</h2>
+      <button (click)="navigateToLogin()">Sign In</button>
     </div>
-    <div class="form-footer">
-        <button type="submit" [disabled]="accountForm.invalid">Sign Up</button>
+    <div class="left">
+      <h2>Sign Up</h2>
+      <form (ngSubmit)="onSubmit()" #signupForm="ngForm">
+        <input
+          type="text"
+          placeholder="Firstname"
+          [(ngModel)]="firstname"
+          name="firstname"
+          required
+        />
+        <input
+          type="text"
+          placeholder="Middlename"
+          [(ngModel)]="middlename"
+          name="middlename"
+          required
+        />
+        <input
+          type="text"
+          placeholder="Lastname"
+          [(ngModel)]="lastname"
+          name="lastname"
+          required
+        />
+        <button type="submit" [disabled]="!signupForm.valid">NEXT</button>
+      </form>
     </div>
-</form>
+  </div>  
+</body>
+</html>

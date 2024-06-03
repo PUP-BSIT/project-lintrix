@@ -1,69 +1,93 @@
-body {
+html, body {
+  height: 100%;
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #95bafe, #84bbae);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
-.form-container {
-  background-color: white;
-  border-radius: 15px;
-  padding: 20px;
-  width: 500px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #007BFF;
+  color: white;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+
+button[disabled] {
+  background-color: #ccc;
+}
+
+.left {
+  width: 50%;
+  background: #FFFFFF;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.right {
+  width: 50%;
+  background-image: linear-gradient(180deg, rgb(17, 99, 239), rgb(11, 195, 152));
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.left h2 {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  color: #000000;
   text-align: center;
 }
 
-.form-container h2 {
-  color: black;
-  margin-bottom: 20px;
-}
-
-.form-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.form-column {
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-}
-
-.form-column label {
-  margin: 0; 
-  text-align: left;
-  color: black;
-  display: none;
-}
-
-.form-column input, 
-.form-column select {
+.left input[type="text"] {
+  width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-top: 30px;
   border: 1px solid #ccc;
-  border-radius: 25px; 
-  background-color: lightgrey;
+  border-radius: 0;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+  font-family: 'Poppins', sans-serif;
 }
 
-.form-footer {
+.left .forgot-password {
+  display: block;
+  text-align: right;
+  color: #000000;
+  text-decoration: underline;
+  margin: 10px 0;
+  text-align: center; 
+}
+
+.left button {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 20px;
+  background: #0097B2;
+  color: #FFFFFF;
+  font-size: 16px;
+  cursor: pointer;
   margin-top: 20px;
 }
 
-.form-footer button {
-  background-color: #0097B2;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 16px;
+.right h2 {
+  margin: 0;
+  margin-bottom: 30px;
 }
 
-.form-footer button:hover {
-  background-color: #0097B2;
+.right button {
+  width: 30%;
+  padding: 13px;
+  border: 2px solid #FFFFFF;
+  border-radius: 20px;
+  background: none;
+  color: #FFFFFF;
+  font-size: 16px;
+  cursor: pointer;
 }
