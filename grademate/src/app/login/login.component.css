@@ -1,47 +1,136 @@
-.container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-  }
-  
-  .container h2 {
-    text-align: center;
-    color: #007bff;
-    margin-bottom: 20px;
-  }
-  
-  form div {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #007BFF;
+  background-image: linear-gradient(to right, rgb(17, 99, 239), rgb(11, 195, 152));
+  color: white;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+button[disabled] {
+  background-color: #ccc;
+}
+
+.left {
+  width: 50%;
+  background: #FFFFFF;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.right {
+  width: 50%;
+  background-image: linear-gradient(180deg, rgb(17, 99, 239), rgb(11, 195, 152));
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.left h2 {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  color: #000000;
+  text-align: center;
+}
+
+.left input[type="email"],
+.left input[type="password"] {
+  appearance: none;
+  border: none;
+  outline: none;
+  border-bottom: 0.2em solid rgb(17, 99, 239);
+  background: #FFFFFF;
+  border-radius: 0.2em 0.2em 0 0;
+  padding: 0.4em;
+  color: black;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+}
+
+.left .forgot-password {
+  display: block;
+  text-align: center;
+  color: #000000;
+  text-decoration: none;
+  margin-top: 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.left button {
+  transition: all 0.3s ease;
+  overflow: hidden;
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 20px;
+  color: #FFFFFF;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.left button:after {
+  position: absolute;
+  content: " ";
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.left button:after {
+  transform: scale(2) rotate(180deg);
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.5), 
+              -4px -4px 6px 0 rgba(116, 125, 136, 0.2), 
+              inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5), 
+              inset 4px 4px 6px 0 rgba(116, 125, 136, 0.3);
+}
+
+.right h2 {
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+.right button {
+  width: 30%;
+  padding: 13px;
+  border: 2px solid #FFFFFF;
+  border-radius: 20px;
+  background: none;
+  color: #FFFFFF;
+  font-size: 16px;
+  cursor: pointer;
+}
