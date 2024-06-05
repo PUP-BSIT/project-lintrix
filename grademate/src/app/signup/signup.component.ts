@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,15 +11,17 @@ export class SignupComponent {
   middlename: string = '';
   lastname: string = '';
 
-  @Output() navigate = new EventEmitter<string>();
+  constructor(private router: Router) {}
 
   onSubmit() {
     console.log('Firstname:', this.firstname);
     console.log('Middlename:', this.middlename);
     console.log('Lastname:', this.lastname);
-    // Handle signup logic here
-
-    this.navigate.emit('login');
+    
+    this.router.navigate(['/signup-landing']);
   }
 
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
 }

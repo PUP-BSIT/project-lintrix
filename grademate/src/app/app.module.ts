@@ -10,15 +10,17 @@ import { SignupComponent } from './signup/signup.component';
 import { EmailAuthComponent } from './email-auth/email-auth.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
+import { SignupLandingComponent } from './signup-landing/signup-landing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    EmailAuthComponent,
+    DashboardComponent,
     PasswordRecoveryComponent,
-    DashboardComponent
+    SignupLandingComponent,
+    EmailAuthComponent,
   ],
   imports: [
     BrowserModule,

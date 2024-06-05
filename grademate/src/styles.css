@@ -9,27 +9,18 @@ body {
   font-family: Arial, sans-serif;
 }
 
-nav {
-  position: absolute;
-  top: 20px;
-  left: 20px;
+.container {
+  display: flex;
+  width: 800px;
+  height: 500px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-nav ul {
-  list-style: none;
-  padding: 0;
+.container h1 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 20px;
 }
 
-nav li {
-  display: inline;
-  margin-right: 10px;
-}
-
-nav a {
-  text-decoration: none;
-  color: #007bff;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}

@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="dashboard.component.css">
 <div class="header">
   <div class="logo">GRADEMATE</div>
@@ -10,14 +9,52 @@
 </div>
 <div class="container">
   <div class="sidebar">
-    <div class="menu-item active">Home</div>
-    <div class="menu-item">Courses</div>
-    <div class="menu-item">Account</div>
-    <div class="menu-item">Notifications</div>
-    <div class="menu-item">Settings</div>
+    <div class="menu-item active" (click)="selectMenu('home')">Home</div>
+    <div class="menu-item" (click)="selectMenu('courses')">Courses</div>
+    <div *ngIf="selectedMenu === 'courses'" class="submenu">
+      <div class="submenu-item" (click)="selectSubMenu('list-courses')">
+            List of subjects/courses</div>
+      <div class="submenu-item" (click)="selectSubMenu('add-edit-courses')">
+            Add/edit subjects/courses</div>
+      <div class="submenu-item" (click)="selectSubMenu('view-course-details')">
+            View subject/course details</div>
+    </div>
+    <div class="menu-item" (click)="selectMenu('grade-entry')">
+            Grade Entry</div>
+    <div *ngIf="selectedMenu === 'grade-entry'" class="submenu">
+      <div class="submenu-item" (click)="selectSubMenu('input-grades')">
+            Input Grades</div>
+      <div class="submenu-item" (click)="selectSubMenu('edit-grades')">
+            Edit Grades</div>
+      <div class="submenu-item" (click)="selectSubMenu('delete-grades')">
+            Delete Grades</div>
+      <div class="submenu-item" (click)="selectSubMenu(
+            'categories-assessments')">Categories assessments</div>
+    </div>
+    <div class="menu-item" (click)="selectMenu('account')">Account</div>
+    <div class="menu-item" (click)="selectMenu('notifications')">
+            Notifications</div>
+    <div class="menu-item" (click)="selectMenu('settings')">Settings</div>
   </div>
   <div class="content">
-    <div class="no-records">NO RECORDS FOUND</div>
+    <ng-container *ngIf="selectedSubMenu">
+      <div *ngIf="selectedSubMenu === 'list-courses'">
+            Content for List of subjects/courses</div>
+      <div *ngIf="selectedSubMenu === 'add-edit-courses'">
+            Content for Add/edit subjects/courses</div>
+      <div *ngIf="selectedSubMenu === 'view-course-details'">
+            Content for View subject/course details</div>
+      <div *ngIf="selectedSubMenu === 'input-grades'">
+            Content for Input Grades</div>
+      <div *ngIf="selectedSubMenu === 'edit-grades'">
+            Content for Edit Grades</div>
+      <div *ngIf="selectedSubMenu === 'delete-grades'">
+            Content for Delete Grades</div>
+      <div *ngIf="selectedSubMenu === 'categories-assessments'">
+            Content for Categories assessments</div>
+    </ng-container>
+    <div *ngIf="!selectedSubMenu && !selectedMenu">
+      <div class="no-records">NO RECORDS FOUND</div>
+    </div>
   </div>
 </div>
-

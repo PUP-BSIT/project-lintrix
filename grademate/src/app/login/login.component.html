@@ -1,34 +1,40 @@
-<div class="container">
-  <div class="left">
-    <h2>Sign In</h2>
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-      <input
-        type="email"
-        placeholder="Email"
-        [(ngModel)]="email"
-        name="email"
-        required
-        email
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        [(ngModel)]="password"
-        name="password"
-        required
-      />
-      <button (click)="navigate.emit('password-recovery')">
-            Forgot Password</button>
-      <button type="submit" [disabled]="!loginForm.valid">LOGIN</button>
-      <P>_________________OR_________________</P>
-      <button type="submit" [disabled]="!loginForm.valid">
-            LOGIN WITH GOOGLE</button>
-    <button (click)="navigate.emit('password-recovery')">Forgot Password</button>
-    <button type="submit" [disabled]="!loginForm.valid">Login</button>
-    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <h2>Sign In</h2>
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <input
+          type="email"
+          placeholder="Email"
+          [(ngModel)]="email"
+          name="email"
+          required
+          email
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="password"
+          name="password"
+          required
+        />
+        <a (click)="onForgotPassword($event)" class="forgot-password">
+            Forgot Password?</a>
+        <button type="submit" [disabled]="!loginForm.valid">Login</button>
+      </form>
+    </div>
+    <div class="right">
+      <h2>Welcome Back!</h2>
+      <button (click)="navigateToSignup()">Sign Up</button>
+    </div>
   </div>
-  <div class="right">
-    <h2>Welcome Back!</h2>
-    <button (click)="navigate.emit('signup')">Sign Up</button>
-  </div>
-</div>
+</body>
+</html>
