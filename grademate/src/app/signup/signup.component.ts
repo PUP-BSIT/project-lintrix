@@ -17,7 +17,7 @@ export class SignupComponent {
     console.log('Firstname:', this.firstname);
     console.log('Middlename:', this.middlename);
     console.log('Lastname:', this.lastname);
-    
+
     this.router.navigate(['/signup-landing']);
   }
 

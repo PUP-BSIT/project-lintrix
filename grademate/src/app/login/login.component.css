@@ -24,7 +24,8 @@ button {
   padding: 0.5rem 1rem;
   border: none;
   background-color: #007BFF;
-  background-image: linear-gradient(to right, rgb(17, 99, 239), rgb(11, 195, 152));
+  background-image: linear-gradient(to right, rgb(17, 99, 239), 
+      rgb(11, 195, 152));
   color: white;
   cursor: pointer;
   box-sizing: border-box;

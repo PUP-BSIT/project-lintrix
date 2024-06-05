@@ -12,6 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
 import { SignupLandingComponent } from './signup-landing/signup-landing.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
