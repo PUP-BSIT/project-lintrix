@@ -9,27 +9,25 @@
 <div class="container">
   <div class="sidebar">
     <div class="menu-item active" (click)="selectMenu('home')">Home</div>
-    <div class="menu-item" (click)="selectMenu('courses')">Courses</div>
-    <div *ngIf="selectedMenu === 'courses'" class="submenu">
-      <div class="submenu-item" (click)="selectSubMenu('list-courses')">
-            List of subjects/courses</div>
-      <div class="submenu-item" (click)="selectSubMenu('add-edit-courses')">
-            Add/edit subjects/courses</div>
-      <div class="submenu-item" (click)="selectSubMenu('view-course-details')">
-            View subject/course details</div>
+    <div class="menu-item">
+      <span (click)="toggleDropdown('courses')">Courses</span>
+      <span class="dropdown-button" (click)="toggleDropdown('courses')">▼</span>
     </div>
-    <div class="menu-item" (click)="selectMenu('grade-entry')">
-            Grade Entry</div>
-    <div *ngIf="selectedMenu === 'grade-entry'" class="submenu">
-      <div class="submenu-item" (click)="selectSubMenu('input-grades')">
-            Input Grades</div>
-      <div class="submenu-item" (click)="selectSubMenu('edit-grades')">
-            Edit Grades</div>
-      <div class="submenu-item" (click)="selectSubMenu('delete-grades')">
-            Delete Grades</div>
-      <div class="submenu-item" (click)="selectSubMenu(
-            'categories-assessments')">Categories assessments</div>
+    <div *ngIf="dropdowns['courses']" class="submenu">
+      <div class="submenu-item" (click)="selectSubMenu('list-courses')">List of subjects/courses</div>
+      <div class="submenu-item" (click)="selectSubMenu('view-course-details')">View subject/course details</div>
     </div>
+    <div class="menu-item">
+      <span (click)="toggleDropdown('grade-entry')">Grade Entry</span>
+      <span class="dropdown-button" (click)="toggleDropdown('grade-entry')">▼</span>
+    </div>
+    <div *ngIf="dropdowns['grade-entry']" class="submenu">
+      <div class="submenu-item" (click)="selectSubMenu('input-grades')">Input Grades</div>
+      <div class="submenu-item" (click)="selectSubMenu('edit-grades')">Edit Grades</div>
+      <div class="submenu-item" (click)="selectSubMenu('delete-grades')">Delete Grades</div>
+      <div class="submenu-item" (click)="selectSubMenu('categories-assessments')">Categories assessments</div>
+    </div>
+    
     <div class="menu-item" (click)="selectMenu('account')">Account</div>
     <div class="menu-item" (click)="selectMenu('notifications')">
             Notifications</div>

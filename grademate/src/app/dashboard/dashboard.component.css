@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-  background-color: #333;
+  background-color: #0F2F58;
   color: #fff;
 }
 
@@ -35,22 +35,33 @@
 
 .container {
   display: flex;
-  
+  background-color: #ffffff;
 }
 
 .sidebar {
   width: 200px;
-  background-color: #f4f4f4;
+  background-color: #daffe1;
   padding: 20px;
 }
 
 .menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px;
   cursor: pointer;
 }
 
 .menu-item.active, .menu-item:hover {
   background-color: #ddd;
+}
+
+.dropdown-button {
+  font-size: 12px;
+  cursor: pointer;
+  padding-left: 5px;
+  transform: translateY(1px); 
+  color: #0F2F58;
 }
 
 .submenu {
@@ -76,6 +87,7 @@
   color: #888;
   font-size: 18px;
 }
+
 button {
   padding: 0.5rem 1rem;
   border: none;
@@ -120,9 +132,9 @@ td span.edit-link, td span.delete-link {
   text-decoration: underline;
   font-size: 15px;
 }
+
 .add-new-link:hover, .edit-link:hover, .delete-link:hover {
   color: #0000CC;
-
 }
 
 .modal {
@@ -193,7 +205,6 @@ td span.edit-link, td span.delete-link {
 
 .modal-content button[type="submit"]:hover, .modal-content button:hover {
   background: linear-gradient(to right, #0000CC, #00CC88);
-  
 }
 
 .table-container {
