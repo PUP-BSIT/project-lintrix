@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="right">
+      <h2>Welcome Back!</h2>
+      <button (click)="navigate.emit('login')">Sign In</button>
+    </div>
+    <div class="left">
+      <h2>Sign Up</h2>
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <input
+          type="birthday"
+          placeholder="Birthday"
+          [(ngModel)]="birthday"
+          name="birthday"
+          required
+          birthday
+        />
+        <input
+          type="sex"
+          placeholder="Sex"
+          [(ngModel)]="sex"
+          name="sex"
+          required
+          sex
+        />
+        <button type="submit" [disabled]="!loginForm.valid">NEXT</button>
+        <button (click)="navigate.emit('signup')">BACK</button>
+      </form>
+    </div>
+  </div>

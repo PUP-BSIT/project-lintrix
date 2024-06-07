@@ -16,6 +16,7 @@ export class LoginComponent {
     if (this.email && this.password) {
       console.log('Email:', this.email);
       console.log('Password:', this.password);
+
       this.router.navigate(['/dashboard']);
     } else {
       console.log('Both email and password are required.');
@@ -24,6 +25,7 @@ export class LoginComponent {
 
   onForgotPassword(event: Event) {
     event.preventDefault();
+
     alert('Forgot password functionality not implemented yet.');
   }
 

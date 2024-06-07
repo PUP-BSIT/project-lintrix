@@ -5,26 +5,26 @@
     padding: 10px;
     background-color: #333;
     color: #fff;
-  }
+}
   
-  .logo {
+.logo {
     font-size: 24px;
   }
   
-  .university-name {
+.university-name {
     font-size: 18px;
-  }
+}
   
-  .user-info {
+.user-info {
     display: flex;
     align-items: center;
-  }
+}
   
-  .user-info span {
+.user-info span {
     margin-right: 10px;
-  }
+}
   
-  .profile-pic {
+.profile-pic {
     width: 40px;
     height: 40px;
     background-color: #ccc;
@@ -204,3 +204,4 @@
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
+
