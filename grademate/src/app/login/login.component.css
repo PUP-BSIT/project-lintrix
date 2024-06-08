@@ -1,12 +1,31 @@
-html, body {
-  height: 100%;
+body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #95bafe, #cdffd8);
 }
 
 h1, h2, h3 {
   font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  display: flex;
+  width: 800px;
+  height: 500px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.container h1 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 20px;
 }
 
 input {
@@ -24,8 +43,7 @@ button {
   padding: 0.5rem 1rem;
   border: none;
   background-color: #007BFF;
-  background-image: linear-gradient(to right, rgb(17, 99, 239), 
-      rgb(11, 195, 152));
+  background-image: linear-gradient(to right, rgb(17, 99, 239), rgb(11, 195, 152));
   color: white;
   cursor: pointer;
   box-sizing: border-box;

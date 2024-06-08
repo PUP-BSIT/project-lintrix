@@ -8,6 +8,7 @@
 </div>
 <div class="container">
   <div class="sidebar">
+    
     <div class="menu-item active" (click)="selectMenu('home')">Home</div>
     <div class="menu-item">
       <span (click)="toggleDropdown('courses')">Courses</span>
@@ -27,10 +28,9 @@
       <div class="submenu-item" (click)="selectSubMenu('delete-grades')">Delete Grades</div>
       <div class="submenu-item" (click)="selectSubMenu('categories-assessments')">Categories assessments</div>
     </div>
-    
+
     <div class="menu-item" (click)="selectMenu('account')">Account</div>
-    <div class="menu-item" (click)="selectMenu('notifications')">
-            Notifications</div>
+    <div class="menu-item" (click)="selectMenu('notifications')">Notifications</div>
     <div class="menu-item" (click)="selectMenu('settings')">Settings</div>
   </div>
   <div class="content">
@@ -41,8 +41,7 @@
             <span class="close" (click)="closeModal()">&times;</span>
             <form (submit)="addCourse()">
               <label for="courseName">Course Name:</label>
-              <input id="courseName" [(ngModel)]="newCourseName" 
-                  name="courseName" required />
+              <input id="courseName" [(ngModel)]="newCourseName" name="courseName" required />
               <button type="submit">Add Course</button>
             </form>
           </div>
@@ -52,8 +51,7 @@
             <span class="close" (click)="closeEditModal()">&times;</span>
             <form (submit)="updateCourse()">
               <label for="editCourseName">Edit Course Name:</label>
-              <input id="editCourseName" [(ngModel)]="editCourseName" 
-                  name="editCourseName" required />
+              <input id="editCourseName" [(ngModel)]="editCourseName" name="editCourseName" required />
               <button type="submit">Update Course</button>
             </form>
           </div>
@@ -71,31 +69,29 @@
             <thead>
               <tr>
                 <th>Course Name</th>
-                <th>Actions</th>
+                <th class="actions-column">Actions</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><span class="add-new-link" (click)="openModal()">
-                    Add New</span></td>
+                <td><span class="add-new-link" (click)="openModal()">Add New</span></td>
                 <td></td>
               </tr>
               <tr *ngFor="let course of courses; let i = index">
                 <td>{{ course }}</td>
                 <td>
-                  <span class="edit-link" (click)="openEditModal(course, i)">
-                      Edit</span>
-                  <span class="delete-link" (click)="openDeleteModal(i)">
-                      Delete</span>
+                  <span class="edit-link" (click)="openEditModal(course, i)">Edit</span>
+                  <span class="delete-link" (click)="openDeleteModal(i)">Delete</span>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-      
+      <!-- other submenus here -->
     </ng-container>
     <div *ngIf="!selectedSubMenu && !selectedMenu">
       <div class="no-records">NO RECORDS FOUND</div>
     </div>
   </div>
+</div>

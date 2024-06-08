@@ -1,26 +1,5 @@
 body {
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: linear-gradient(to right, #95bafe, #cdffd8);
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
-
-.container {
-  display: flex;
-  width: 800px;
-  height: 500px;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-.container h1 {
-  font-size: 32px;
-  color: #333;
-  margin-bottom: 20px;
-}
-
