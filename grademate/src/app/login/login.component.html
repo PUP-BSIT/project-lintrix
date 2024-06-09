@@ -26,8 +26,9 @@
           name="password"
           required
         />
-        <a (click)="onForgotPassword($event)" class="forgot-password">
-            Forgot Password?</a>
+        <div class="forgot-password-container">
+          <button (click)="onForgotPassword($event)" class="forgot-password">Forgot Password?</button>
+        </div>
         <button type="submit" [disabled]="!loginForm.valid">Login</button>
       </form>
     </div>
