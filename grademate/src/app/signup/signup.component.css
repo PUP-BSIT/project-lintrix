@@ -6,7 +6,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(to right, #95bafe, #cdffd8);
+  background: url('/assets/waves_1.svg');
+  background-size: cover;
 }
 
 .container {
@@ -47,7 +48,10 @@ button[disabled] {
 
 .right {
   width: 50%;
-  background-image: linear-gradient(180deg, rgb(17, 99, 239), rgb(11, 195, 152));
+  background-image: url('/assets/waves_4.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #FFFFFF;
   display: flex;
   flex-direction: column;
