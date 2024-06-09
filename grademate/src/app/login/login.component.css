@@ -6,7 +6,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: url('/grademate/src/assets/waves_1.svg');
+  background: url('/assets/waves_1.svg');
   background-size: cover;
 }
 
