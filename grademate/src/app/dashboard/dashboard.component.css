@@ -1,21 +1,10 @@
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-  overflow: hidden;
-}
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-  background-color: hsl(214, 71%, 20%);
+  background-color: #333;
   color: #fff;
-  position: fixed;
-  z-index: 10;
-  width: 100vw;
 }
 
 .logo {
@@ -46,39 +35,22 @@ body {
 
 .container {
   display: flex;
-  background-color: #ffffff;
-  padding-top: 60px;
+  
 }
 
 .sidebar {
   width: 200px;
-  background-color: #daffe1;
+  background-color: #f4f4f4;
   padding: 20px;
-  height: calc(100vh - 60px);
-  overflow-y: auto;
-  position: fixed;
-  top: 50px;
-  z-index: 1;
 }
 
 .menu-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 10px;
   cursor: pointer;
 }
 
 .menu-item.active, .menu-item:hover {
   background-color: #ddd;
-}
-
-.dropdown-button {
-  font-size: 12px;
-  cursor: pointer;
-  padding-left: 5px;
-  transform: translateY(1px);
-  color: #0F2F58;
 }
 
 .submenu {
@@ -97,31 +69,6 @@ body {
 .content {
   flex: 1;
   padding: 20px;
-  margin-left: 220px;
-  overflow-y: auto;
-  display: flex;
-  justify-content: center;
-}
-
-.table-container {
-  width: 100%;
-  max-width: 2000px;
-  min-width: 1000px;
-  margin-left: 10px;
-}
-
-table, th, td {
-  width: auto;
-  padding: 10px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 0;
-  box-sizing: border-box;
-  background-color: #f2f2f2;
-}
-
-.actions-column {
-  width: 150px;
 }
 
 .no-records {
@@ -129,7 +76,6 @@ table, th, td {
   color: #888;
   font-size: 18px;
 }
-
 button {
   padding: 0.5rem 1rem;
   border: none;
@@ -145,8 +91,27 @@ button:hover {
   background-color: #6495ED;
 }
 
+table, th, td {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+}
+
+.form-container {
+  height: 400px; 
+  overflow: auto;
+}
+
+.course-list {
+  margin-top: 20px;
+}
+
 td span.edit-link, td span.delete-link {
-  margin-left: 20px;
+  margin-left: 20px; /* Added space between edit and delete links */
 }
 
 .add-new-link, .edit-link, .delete-link {
@@ -155,9 +120,9 @@ td span.edit-link, td span.delete-link {
   text-decoration: underline;
   font-size: 15px;
 }
-
 .add-new-link:hover, .edit-link:hover, .delete-link:hover {
   color: #0000CC;
+
 }
 
 .modal {
@@ -228,6 +193,7 @@ td span.edit-link, td span.delete-link {
 
 .modal-content button[type="submit"]:hover, .modal-content button:hover {
   background: linear-gradient(to right, #0000CC, #00CC88);
+  
 }
 
 .table-container {
@@ -245,3 +211,5 @@ th, td {
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
+
+
