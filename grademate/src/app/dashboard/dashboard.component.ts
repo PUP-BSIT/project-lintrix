@@ -16,6 +16,10 @@ export class DashboardComponent {
   isDeleteModalOpen: boolean = false;
   courseToEditIndex: number | null = null;
   courseToDeleteIndex: number | null = null;
+  dropdowns: { [key: string]: boolean } = {
+    courses: false,
+    'grade-entry': false,
+  };
 
   selectMenu(menu: string): void {
     if (this.selectedMenu === menu) {
@@ -28,6 +32,10 @@ export class DashboardComponent {
 
   selectSubMenu(subMenu: string): void {
     this.selectedSubMenu = subMenu;
+  }
+
+  toggleDropdown(menu: string): void {
+    this.dropdowns[menu] = !this.dropdowns[menu];
   }
 
   addCourse(): void {
