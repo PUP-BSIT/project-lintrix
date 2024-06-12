@@ -6,8 +6,26 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: url('/assets/waves_1.svg');
+  background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%), 
+      url('/assets/layered.svg');
   background-size: cover;
+  background-blend-mode: overlay;
+  animation: gradientShift 10s infinite alternate;
+}
+
+@keyframes gradientShift {
+  0% {
+    background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%), 
+        url('/assets/layered.svg');
+  }
+  50% {
+    background: linear-gradient(135deg, #95bafe 0%, #cdffd8 100%), 
+        url('/assets/layered.svg');
+  }
+  100% {
+    background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%), 
+        url('/assets/layered.svg');
+  }
 }
 
 h1, h2, h3 {
@@ -20,13 +38,15 @@ h1, h2, h3 {
   height: 500px;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .container h1 {
   font-size: 32px;
   color: #333;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 input {
@@ -38,17 +58,29 @@ input {
   border-radius: 5px;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+  border-color: #1163ef;
+  box-shadow: 0 0 5px rgba(17, 99, 239, 0.5);
 }
 
 button {
   padding: 0.5rem 1rem;
   border: none;
   background-color: #007BFF;
-  background-image: linear-gradient(to right, rgb(17, 99, 239), rgb(11, 195, 152));
+  background-image: linear-gradient(to right, #1163ef, #0bc398);
   color: white;
   cursor: pointer;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-image: linear-gradient(to right, #0bc398, #1163ef);
+  transform: translateY(-2px);
 }
 
 button[disabled] {
@@ -57,23 +89,27 @@ button[disabled] {
 
 .left {
   width: 50%;
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.8);
   padding: 40px;
   box-sizing: border-box;
+  backdrop-filter: blur(10px);
 }
 
 .right {
   width: 50%;
-  background-image: url('/assets/waves_4.svg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   color: #FFFFFF;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
+  background: linear-gradient(to bottom right, rgba(17, 99, 239, 0.8), 
+      rgba(11, 195, 152, 0.8)), url('/assets/layered.svg');
+  background-size: cover;
+  background-blend-mode: overlay;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
 .left h2 {
@@ -88,7 +124,7 @@ button[disabled] {
   appearance: none;
   border: none;
   outline: none;
-  border-bottom: 0.2em solid rgb(17, 99, 239);
+  border-bottom: 0.2em solid #1163ef;
   background: #FFFFFF;
   border-radius: 0.2em 0.2em 0 0;
   padding: 0.4em;
@@ -122,6 +158,12 @@ button[disabled] {
   margin-top: 20px;
   position: relative;
   box-sizing: border-box;
+  background-image: linear-gradient(to right, #1163ef, #0bc398);
+}
+
+.left button:hover {
+  background-image: linear-gradient(to right, #0bc398, #1163ef);
+  transform: translateY(-2px);
 }
 
 .right h2 {
@@ -138,4 +180,10 @@ button[disabled] {
   color: #FFFFFF;
   font-size: 16px;
   cursor: pointer;
+  transition: background 0.1s ease, color 0.1s ease;
+}
+
+.right button:hover {
+  background: #FFFFFF;
+  color: #1163ef;
 }
