@@ -270,6 +270,7 @@
   
    <!-- Account Menu -->
    <div *ngIf="selectedMenu === 'account'">
+    <div class="account-container">
     <div class="account-info">
       <div class="profile-pic-edit">
         <img [src]="user.profilePic" alt="Profile Picture" class="profile-pic">
@@ -280,6 +281,7 @@
         <p>Email: {{ user.email }}</p>
       </div>
     </div>
+   </div>
    </div>
 </body>
 </html>
