@@ -10,8 +10,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px;
-  background-color: hsl(214, 71%, 20%);
+  padding: 10px;
+  background-color: #1e7989;
   color: #fff;
   position: fixed;
   z-index: 10;
@@ -51,8 +51,8 @@ body {
 }
 
 .sidebar {
-  width: 200px;
-  background-color: #daffe1;
+  width: 225px;
+  background-color: #e5fdf9;
   padding: 20px;
   height: calc(100vh - 60px);
   overflow-y: auto;
@@ -61,16 +61,32 @@ body {
   z-index: 1;
 }
 
+.dashboard-title {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
 .menu-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
   cursor: pointer;
+  margin-left: 30px;
+  margin-bottom: 5px;
+}
+
+.bottom-items {
+  margin-top: 250px;
 }
 
 .menu-item.active, .menu-item:hover {
-  background-color: #ddd;
+  background-color: #1e7989;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border-radius: 10px;
 }
 
 .dropdown-button {
@@ -82,7 +98,7 @@ body {
 }
 
 .submenu {
-  padding-left: 20px;
+  padding-left: 5px;
 }
 
 .submenu-item {
@@ -108,20 +124,75 @@ body {
   max-width: 2000px;
   min-width: 1000px;
   margin-left: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-table, th, td {
-  width: auto;
-  padding: 10px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 0;
-  box-sizing: border-box;
-  background-color: #f2f2f2;
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.table-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+  color: #333;
+}
+
+.add-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: #0056b3;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f9f9f9;
+  font-weight: 600;
+}
+
+td {
+  background-color: #fff;
 }
 
 .actions-column {
   width: 150px;
+  text-align: center;
+}
+
+.edit-link, .delete-link {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.edit-link::before {
+  content: '✏️';
+}
+
+.delete-link::before {
+  content: '🗑️';
 }
 
 .no-records {
@@ -138,30 +209,14 @@ button {
   color: white;
   cursor: pointer;
   margin-bottom: 5px;
-  margin: center;
 }
 
 button:hover {
   background-color: #6495ED;
 }
 
-td span.edit-link, td span.delete-link {
-  margin-left: 20px;
-}
-
-.add-new-link, .edit-link, .delete-link {
-  color: #0000FF;
-  cursor: pointer;
-  text-decoration: underline;
-  font-size: 15px;
-}
-
-.add-new-link:hover, .edit-link:hover, .delete-link:hover {
-  color: #0000CC;
-}
-
 .modal {
-  display: block; 
+  display: block;
   position: fixed;
   z-index: 1;
   left: 120px;
@@ -179,7 +234,6 @@ td span.edit-link, td span.delete-link {
   width: 300px;
   border-radius: 10px;
   text-align: center;
-  margin-top: 90px;
 }
 
 .close {
@@ -230,6 +284,7 @@ td span.edit-link, td span.delete-link {
 .modal-content button[type="submit"]:hover, .modal-content button:hover {
   background: linear-gradient(to right, #0000CC, #00CC88);
 }
+
 
 .table-container {
   max-height: 100%; 
