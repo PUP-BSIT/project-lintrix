@@ -14,29 +14,17 @@
     </div>
     <div class="left">
       <h2>Sign Up</h2>
-      <form (ngSubmit)="onSubmit()" #signupForm="ngForm">
-        <input
-          type="text"
-          placeholder="Firstname"
-          [(ngModel)]="firstname"
-          name="firstname"
-          required
-        />
-        <input
-          type="text"
-          placeholder="Middlename"
-          [(ngModel)]="middlename"
-          name="middlename"
-          required
-        />
-        <input
-          type="text"
-          placeholder="Lastname"
-          [(ngModel)]="lastname"
-          name="lastname"
-          required
-        />
-        <button type="submit" [disabled]="!signupForm.valid">NEXT</button>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <input type="text" placeholder="Firstname" formControlName="first_name" />
+        <input type="text" placeholder="Lastname" formControlName="last_name" />
+        <input type="text" placeholder="Username" formControlName="username" />
+        <input type="email" placeholder="Email" formControlName="email" />
+        <input type="date" placeholder="Birthday" formControlName="birthday" />
+        <input type="text" placeholder="Sex" formControlName="sex" />
+        <input type="password" placeholder="Password" formControlName="password" />
+        <input type="password" placeholder="Confirm Password" formControlName="confirmPassword" />
+        <input type="text" placeholder="University" formControlName="university" />
+        <button type="submit" [disabled]="signupForm.invalid">Submit</button>
       </form>
     </div>
   </div>  

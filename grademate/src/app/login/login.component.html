@@ -10,32 +10,19 @@
   <div class="container">
     <div class="left">
       <h2>Sign In</h2>
-      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-        <input
-          type="email"
-          placeholder="Email"
-          [(ngModel)]="email"
-          name="email"
-          required
-          email
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          [(ngModel)]="password"
-          name="password"
-          required
-        />
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <input type="email" placeholder="Email" formControlName="email" />
+        <input type="password" placeholder="Password" formControlName="password" />
         <div class="forgot-password-container">
           <button (click)="onForgotPassword($event)" class="forgot-password">Forgot Password?</button>
         </div>
-        <button type="submit" [disabled]="!loginForm.valid">Login</button>
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
       </form>
     </div>
     <div class="right">
       <h2>Welcome Back!</h2>
       <button (click)="navigateToSignup()">Sign Up</button>
     </div>
-  </div>
+  </div>  
 </body>
 </html>

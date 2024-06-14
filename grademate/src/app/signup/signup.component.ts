@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SignupService } from '../services/signup.service';
 
 @Component({
   selector: 'app-signup',
@@ -7,18 +9,38 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  firstname: string = '';
-  middlename: string = '';
-  lastname: string = '';
+  signupForm: FormGroup;
 
-  constructor(private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private signupService: SignupService,
+    private router: Router
+  ) {
+    this.signupForm = this.fb.group({
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      birthday: ['', Validators.required],
+      sex: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required],
+      university: ['', Validators.required]
+    });
+  }
 
   onSubmit() {
-    console.log('Firstname:', this.firstname);
-    console.log('Middlename:', this.middlename);
-    console.log('Lastname:', this.lastname);
-
-    this.router.navigate(['/signup-landing']);
+    if (this.signupForm.valid) {
+      this.signupService.register(this.signupForm.value).subscribe({
+        next: (response) => {
+          console.log('Registration successful', response);
+          this.router.navigate(['/login']);
+        },
+        error: (error) => {
+          console.log('Registration failed', error);
+        }
+      });
+    }
   }
 
   navigateToLogin() {
