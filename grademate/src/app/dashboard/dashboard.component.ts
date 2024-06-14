@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SignupService } from '../services/signup.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 interface Assessment {
   type: string;
@@ -12,7 +15,7 @@ interface Assessment {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   selectedMenu: string | null = 'home';
   selectedSubMenu: string | null = '';
   user = {
@@ -35,6 +38,20 @@ export class DashboardComponent {
     'grade-entry': false,
   };
 
+  loggedInUsername: string = ''; // Initialize here
+
+  constructor(
+    private authService: AuthenticationService,
+    private signupService: SignupService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    // Fetch logged-in username when component initializes
+    this.loggedInUsername = this.authService.getLoggedInUsername() || ''; // Initialize based on the actual logic
+    console.log('Logged in username:', this.loggedInUsername);
+  }
+
   // Assessments
   assessments: Assessment[] = [];
   assessmentTypes: string[] = ['Quiz', 'Activity', 'Exam', 'Project'];
@@ -46,9 +63,20 @@ export class DashboardComponent {
   assessmentToEditIndex: number | null = null;
   assessmentToDeleteIndex: number | null = null;
 
+  logout(): void {
+    this.signupService.logout().subscribe(response => {
+      console.log(response);  // Handle the response if needed
+      this.router.navigate(['/login']);  // Redirect to login page
+    });
+  }
+
   selectMenu(menu: string): void {
-    this.selectedMenu = menu;
-    this.selectedSubMenu = '';
+    if (menu === 'logout') {
+      this.logout();
+    } else {
+      this.selectedMenu = menu;
+      this.selectedSubMenu = '';
+    }
   }
 
   selectSubMenu(subMenu: string): void {
