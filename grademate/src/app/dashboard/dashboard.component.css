@@ -134,7 +134,7 @@ body {
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #95bafe;
+  background-color: #c5c7ca;
   color: black;
   border-radius: 15px;
   overflow: hidden;
@@ -146,18 +146,15 @@ table, th, td {
 
 th, td {
   padding: 12px;
-  text-align: justify;
+  text-align: center;
   color: #000;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #000;
 }
 
 th {
-  background-color: #cdffd8;
+  background-color: #95bafe;
   font-weight: 600;
-}
-
-td {
-  background-color: #ffffff;
+  color: #000;
 }
 
 .actions-column {
@@ -283,22 +280,6 @@ button:hover {
   overflow-y: auto;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #000;
-}
-
-th {
-  background-color: #95bafe;
-  color: #000;
-}
-
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
@@ -315,10 +296,6 @@ tr:nth-child(even) {
 .edit-link:hover,
 .delete-link:hover {
   color: #4a4747;
-}
-
-.actions-column {
-  text-align: center;
 }
 
 tfoot {

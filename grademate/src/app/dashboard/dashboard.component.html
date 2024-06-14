@@ -25,9 +25,9 @@
       </div>
       <div *ngIf="dropdowns['courses']" class="submenu">
         <div class="submenu-item" (click)="selectSubMenu('list-courses')">
-                  List of subjects/courses</div>
+            List of subjects/courses</div>
         <div class="submenu-item" (click)="selectSubMenu('view-course-details')">
-                  View subject/course details</div>
+            View subject/course details</div>
       </div>
       <div class="menu-item" (click)="selectMenu('input-grades')">
         <span class="menu-text">Grade Entry</span>
@@ -50,7 +50,7 @@
               <form (submit)="addCourse()">
                 <label for="courseName">Course Name:</label>
                 <input id="courseName" [(ngModel)]="newCourseName" 
-                        name="courseName" required />
+                    name="courseName" required />
                 <button type="submit">Add Course</button>
               </form>
             </div>
@@ -61,7 +61,7 @@
               <form (submit)="updateCourse()">
                 <label for="editCourseName">Edit Course Name:</label>
                 <input id="editCourseName" [(ngModel)]="editCourseName" 
-                        name="editCourseName" required />
+                    name="editCourseName" required />
                 <button type="submit">Update Course</button>
               </form>
             </div>
@@ -85,16 +85,16 @@
               <tbody>
                 <tr>
                   <td><span class="add-new-link" (click)="openModal()">
-                              Add New</span></td>
+                      Add New</span></td>
                   <td></td>
                 </tr>
                 <tr *ngFor="let course of courses; let i = index">
                   <td>{{ course }}</td>
                   <td>
                     <span class="edit-link" (click)="openEditModal(course, i)">
-                              Edit</span>
+                        Edit</span>
                     <span class="delete-link" (click)="openDeleteModal(i)">
-                              Delete</span>
+                        Delete</span>
                   </td>
                 </tr>
               </tbody>
@@ -120,61 +120,61 @@
                 <!-- Quizzes Section -->
                 <tr>
                   <td><span class="add-new-link" (click)="openAssessmentModal(
-                              'Quiz')">Quizzes</span></td>
+                      'Quiz')">Quizzes</span></td>
                   <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
                 </tr>
                 <tr *ngFor="let quiz of getAssessmentsByType('Quiz'); 
-                        let i = index">
+                    let i = index">
                   <td>{{ quiz.name }}</td>
                   <td>{{ quiz.grade }}</td>
                   <td>{{ quiz.weight }}%</td>
                   <td>{{ getWeightedGrade(quiz) }}</td>
                   <td>
                     <span class="edit-link" (click)="openEditAssessmentModal(
-                              quiz, 'Quiz', i)">Edit</span>
+                        quiz, 'Quiz', i)">Edit</span>
                     <span class="delete-link" (click)=
-                              "openDeleteAssessmentModal(quiz, 'Quiz', i)">
-                                          Delete</span>
+                        "openDeleteAssessmentModal(quiz, 'Quiz', i)">
+                            Delete</span>
                   </td>
                 </tr>
   
                 <!-- Activities Section -->
                 <tr>
                   <td><span class="add-new-link" (click)="openAssessmentModal(
-                              'Activity')">Activities</span></td>
+                      'Activity')">Activities</span></td>
                   <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
                 </tr>
                 <tr *ngFor="let activity of getAssessmentsByType('Activity'); 
-                        let i = index">
+                    let i = index">
                   <td>{{ activity.name }}</td>
                   <td>{{ activity.grade }}</td>
                   <td>{{ activity.weight }}%</td>
                   <td>{{ getWeightedGrade(activity) }}</td>
                   <td>
                     <span class="edit-link" (click)="openEditAssessmentModal(
-                              activity, 'Activity', i)">Edit</span>
+                        activity, 'Activity', i)">Edit</span>
                     <span class="delete-link" (click)=
-                              "openDeleteAssessmentModal(activity, 
-                                    'Activity', i)">Delete</span>
+                        "openDeleteAssessmentModal(activity, 
+                            'Activity', i)">Delete</span>
                   </td>
                 </tr>
   
                 <tr>
                   <td><span class="add-new-link" (click)="openAssessmentModal(
-                        'Exam')">Exams</span></td>
+                      'Exam')">Exams</span></td>
                   <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
                 </tr>
                 <tr *ngFor="let exam of getAssessmentsByType('Exam'); 
-                  let i = index">
+                    let i = index">
                   <td>{{ exam.name }}</td>
                   <td>{{ exam.grade }}</td>
                   <td>{{ exam.weight }}%</td>
@@ -184,21 +184,21 @@
                         exam, 'Exam', i)">Edit</span>
                     <span class="delete-link" (click)=
                         "openDeleteAssessmentModal(exam, 'Exam', i)">
-                              Delete</span>
+                            Delete</span>
                   </td>
                 </tr>
   
                 <!-- Projects Section -->
                 <tr>
                   <td><span class="add-new-link" (click)="openAssessmentModal(
-                        'Project')">Projects</span></td>
+                      'Project')">Projects</span></td>
                   <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
                 </tr>
                 <tr *ngFor="let project of getAssessmentsByType('Project'); 
-                  let i = index">
+                    let i = index">
                   <td>{{ project.name }}</td>
                   <td>{{ project.grade }}</td>
                   <td>{{ project.weight }}%</td>
@@ -208,7 +208,7 @@
                         project, 'Project', i)">Edit</span>
                     <span class="delete-link" (click)=
                         "openDeleteAssessmentModal(project, 'Project', i)">
-                              Delete</span>
+                            Delete</span>
                   </td>
                 </tr>
               </tbody>
@@ -216,7 +216,7 @@
                 <!-- Total for Quizzes -->
                 <tr>
                   <td colspan="3" style="text-align:right;">
-                        Total for Quizzes:</td>
+                      Total for Quizzes:</td>
                   <td>{{ getTotalByType('Quiz') }}</td>
                   <td></td>
                 </tr>
@@ -224,7 +224,7 @@
                 <!-- Total for Activities -->
                 <tr>
                   <td colspan="3" style="text-align:right;">
-                        Total for Activities:</td>
+                      Total for Activities:</td>
                   <td>{{ getTotalByType('Activity') }}</td>
                   <td></td>
                 </tr>
@@ -232,7 +232,7 @@
                 <!-- Total for Exams -->
                 <tr>
                   <td colspan="3" style="text-align:right;">
-                        Total for Exams:</td>
+                      Total for Exams:</td>
                   <td>{{ getTotalByType('Exam') }}</td>
                   <td></td>
                 </tr>
@@ -240,7 +240,7 @@
                 <!-- Total for Projects -->
                 <tr>
                   <td colspan="3" style="text-align:right;">
-                        Total for Projects:</td>
+                      Total for Projects:</td>
                   <td>{{ getTotalByType('Project') }}</td>
                   <td></td>
                 </tr>
@@ -248,7 +248,7 @@
                 <!-- Grand Total -->
                 <tr>
                   <td colspan="3" style="text-align:right; font-weight: bold;">
-                        Grand Total:</td>
+                      Grand Total:</td>
                   <td style="font-weight: bold;">{{ getGrandTotal() }}</td>
                   <td></td>
                 </tr>
@@ -274,7 +274,7 @@
       <span class="close" (click)="closeAssessmentModal()">&times;</span>
       <h2>{{ currentAssessmentType }} Assessment</h2>
       <form (ngSubmit)="isEditAssessmentModalOpen ? updateAssessment() : 
-            addAssessment()">
+          addAssessment()">
         <label for="assessmentName">Assessment Name:</label>
         <input id="assessmentName" [(ngModel)]="newAssessmentName" 
             name="assessmentName" required />
@@ -284,7 +284,7 @@
         <label for="assessmentWeight">Weight (%):</label>
         <input id="assessmentWeight" type="number" 
             [(ngModel)]="newAssessmentWeight" 
-                  name="assessmentWeight" required />
+                name="assessmentWeight" required />
         <button type="submit">{{ isEditAssessmentModalOpen ? 
             'Update Assessment' : 'Add Assessment' }}</button>
       </form>
