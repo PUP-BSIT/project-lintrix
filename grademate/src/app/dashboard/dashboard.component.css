@@ -124,7 +124,7 @@ body {
   max-width: 2000px;
   min-width: 1000px;
   margin-left: 10px;
-  background-color: #cdffd8;
+  background-color: #e5fdf9;
   border: 2px solid #95bafe;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -210,7 +210,7 @@ button:hover {
 }
 
 .modal-content {
-  background-color: #cdffd8;
+  background-color: #e5fdf9;
   margin: 10% auto;
   padding: 20px;
   border: 1px solid #95bafe;
