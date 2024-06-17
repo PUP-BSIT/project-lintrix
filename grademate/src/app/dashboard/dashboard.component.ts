@@ -64,7 +64,7 @@ export class DashboardComponent implements OnInit {
   assessmentToDeleteIndex: number | null = null;
 
   logout(): void {
-    this.signupService.logout().subscribe(response => {
+    this.signupService.logout().subscribe((response: any) => {
       console.log(response);  // Handle the response if needed
       this.router.navigate(['/login']);  // Redirect to login page
     });

@@ -14,6 +14,11 @@ import { EmailAuthComponent } from './email-auth/email-auth.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
 import { SignupLandingComponent } from './signup-landing/signup-landing.component';
+import { HomeComponent } from './home/home.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { FaqsComponent } from './faqs/faqs.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -24,7 +29,12 @@ import { SignupLandingComponent } from './signup-landing/signup-landing.componen
     DashboardComponent,
     PasswordRecoveryComponent,
     SignupLandingComponent,
-    EmailAuthComponent
+    EmailAuthComponent,
+    HomeComponent,
+    AboutUsComponent,
+    FaqsComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
