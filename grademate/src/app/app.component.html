@@ -1,3 +1,11 @@
+<ng-container *ngIf="!isAuthRoute() && !isDashboardRoute()">
+  <app-header></app-header>
+</ng-container>
+
 <div class="container">
   <router-outlet></router-outlet>
 </div>
+
+<ng-container *ngIf="!isAuthRoute() && !isDashboardRoute()">
+  <app-footer></app-footer>
+</ng-container>

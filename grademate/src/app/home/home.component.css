@@ -1,0 +1,14 @@
+.home {
+    background-color: #95bafe;
+    color: black;
+    padding: 20px;
+    margin: 80px auto 20px auto; /* Adjust for header and footer */
+    max-width: 800px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+  
+.home:hover {
+    transform: scale(1.05);
+}

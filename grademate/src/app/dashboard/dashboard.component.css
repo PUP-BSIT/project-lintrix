@@ -39,14 +39,14 @@ body {
 .profile-pic {
   width: 40px;
   height: 40px;
-  background-color: #ccc;
+  background-color: #e5fdf9;
   border-radius: 50%;
   margin-right: 15px;
 }
 
 .container {
   display: flex;
-  background-color: #ffffff;
+  background-color: #e5fdf9;
   padding-top: 60px;
 }
 
@@ -134,7 +134,7 @@ body {
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #c5c7ca;
+  background-color: #95bafe;
   color: black;
   border-radius: 15px;
   overflow: hidden;
@@ -146,15 +146,18 @@ table, th, td {
 
 th, td {
   padding: 12px;
-  text-align: center;
+  text-align: justify;
   color: #000;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #ddd;
 }
 
 th {
-  background-color: #95bafe;
+  background-color: #e5fdf9;
   font-weight: 600;
-  color: #000;
+}
+
+td {
+  background-color: #ffffff;
 }
 
 .actions-column {
@@ -280,6 +283,22 @@ button:hover {
   overflow-y: auto;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #000;
+}
+
+th {
+  background-color: #95bafe;
+  color: #000;
+}
+
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
@@ -296,6 +315,10 @@ tr:nth-child(even) {
 .edit-link:hover,
 .delete-link:hover {
   color: #4a4747;
+}
+
+.actions-column {
+  text-align: center;
 }
 
 tfoot {
