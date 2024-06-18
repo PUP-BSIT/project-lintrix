@@ -31,7 +31,7 @@ export class LoginComponent {
           if (response.message === 'success') {
             console.log('Login successful', response);
             // Set the logged-in username
-            const username = this.loginForm.value.email; // Assuming you use email as the username
+            const username = this.loginForm.value.email;
             this.authService.setLoggedInUsername(username);
             console.log('Setting logged-in username:', username);
             this.router.navigate(['/dashboard']);
@@ -43,7 +43,19 @@ export class LoginComponent {
           console.log('Login error', error);
         }
       });
+    } else {
+      this.showValidationErrors();
     }
+  }
+
+  showValidationErrors() {
+    Object.keys(this.loginForm.controls).forEach(field => {
+      const control = this.loginForm.get(field);
+      if (control && control.invalid) {
+        control.markAsTouched({ onlySelf: true });
+      }
+    });
+    alert('Please fill out all required fields correctly.');
   }
 
   onForgotPassword(event: Event) {

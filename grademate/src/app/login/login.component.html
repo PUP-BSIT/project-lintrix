@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Login</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
 </head>
 <body>
@@ -11,10 +11,27 @@
     <div class="left">
       <h2>Sign In</h2>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <input type="email" placeholder="Email" formControlName="email" />
-        <input type="password" placeholder="Password" formControlName="password" />
+        <div>
+          <input type="email" placeholder="Email" formControlName="email"/>
+          <div *ngIf="loginForm.controls['email'].touched && loginForm.controls
+              ['email'].invalid" class="error">
+            <span *ngIf="loginForm.controls['email'].errors?.['required']" 
+                class="error-message">This field is required.</span>
+            <span *ngIf="loginForm.controls['email'].errors?.['email']" 
+                class="error-message">Invalid email format.</span>
+          </div>
+        </div>
+        <div>
+          <input type="password" placeholder="Password" formControlName="password"/>
+          <div *ngIf="loginForm.controls['password'].touched && 
+              loginForm.controls['password'].invalid" class="error">
+            <span *ngIf="loginForm.controls['password'].errors?.['required']" 
+                class="error-message">This field is required.</span>
+          </div>
+        </div>
         <div class="forgot-password-container">
-          <button (click)="onForgotPassword($event)" class="forgot-password">Forgot Password?</button>
+          <button (click)="onForgotPassword($event)" class="forgot-password">
+              Forgot Password?</button>
         </div>
         <button type="submit" [disabled]="loginForm.invalid">Login</button>
       </form>

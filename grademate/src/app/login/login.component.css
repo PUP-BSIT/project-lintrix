@@ -23,7 +23,7 @@ body {
         url('/assets/layered.svg');
   }
   100% {
-    background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%), 
+    background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%),
         url('/assets/layered.svg');
   }
 }
@@ -186,4 +186,10 @@ button[disabled] {
 .right button:hover {
   background: #FFFFFF;
   color: #1163ef;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875em;
+  margin-top: 1px;
 }
