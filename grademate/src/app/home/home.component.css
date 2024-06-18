@@ -1,14 +1,118 @@
 .home {
-    background-color: #95bafe;
-    color: black;
-    padding: 20px;
-    margin: 80px auto 20px auto; /* Adjust for header and footer */
-    max-width: 800px;
-    border-radius: 10px;
+    background: url('/assets/home.png') no-repeat;
+    background-size: 30%;
+    background-position: top right;
+    padding: 130px;
     text-align: center;
-    transition: transform 0.3s ease-in-out;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
 }
-  
+
+.home::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 15px;
+    z-index: 1;
+}
+
+.home > * {
+    position: relative;
+    z-index: 2;
+}
+
 .home:hover {
-    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #95bafe;
+    font-size: 3em;
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-in-out;
+    text-shadow: 
+      -1px -1px 0 #000,  
+       1px -1px 0 #000,
+      -1px  1px 0 #000,
+       1px  1px 0 #000;
+}
+
+p {
+    color: black;
+    font-size: 1.2em;
+    animation: fadeIn 3s ease-in-out;
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.feature {
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 2px solid black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 25%;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.feature h2 {
+    color: #6da0ff;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    color: black;
+}
+
+.cta-button {
+    background-color: #95bafe;
+    border: none;
+    border-radius: 25px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-top: 30px;
+    padding: 15px 30px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #6788c6;
+    transform: translateY(-5px);
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+      transform: translateY(-20px);
+    }
+    to {
+      transform: translateY(0);
+    }
+}
+
+h1, p, .feature, .cta-button {
+    animation: slideIn 1s ease-out;
 }
