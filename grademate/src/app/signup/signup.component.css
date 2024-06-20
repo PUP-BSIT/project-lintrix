@@ -1,4 +1,4 @@
-body {
+:host {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
@@ -10,6 +10,7 @@ body {
   background-size: cover;
   background-blend-mode: overlay;
   animation: gradientShift 10s infinite alternate;
+  color: white;
 }
 
 @keyframes gradientShift {
@@ -17,7 +18,7 @@ body {
     background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%), url('/assets/layered.svg');
   }
   50% {
-    background: linear-gradient(135deg, #95bafe 0%, #cdffd8 100%), url('/assets/layered.svg');
+    background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%), url('/assets/layered.svg');
   }
   100% {
     background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%), url('/assets/layered.svg');
@@ -26,26 +27,21 @@ body {
 
 .container {
   display: flex;
-  width: 800px;
-  height: 500px;
-  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  width: 900px;
+  height: 630px;
+  border-radius: 40px;
   overflow: hidden;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
 }
 
-.container h1 {
-  font-size: 32px;
-  color: #333;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
 button {
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 5px;
-  background-color: #0097B2;
+  border-radius: 8px;
+  background-color: rgb(33, 33, 33);
   color: white;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
@@ -53,7 +49,7 @@ button {
 }
 
 button:hover {
-  background-color: #007BFF;
+  background-color: #fff;
   transform: translateY(-2px);
 }
 
@@ -63,7 +59,7 @@ button[disabled] {
 
 .left {
   width: 50%;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   padding: 40px;
   box-sizing: border-box;
   backdrop-filter: blur(10px);
@@ -71,13 +67,14 @@ button[disabled] {
 
 .right {
   width: 50%;
-  color: #FFFFFF;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
-  background: linear-gradient(to bottom right, rgba(17, 99, 239, 0.8), rgba(11, 195, 152, 0.8)), url('/assets/layered.svg');
+  background: linear-gradient(to bottom right, rgba(17, 99, 239, 0.8), 
+  rgba(11, 195, 152, 0.8)), url('/assets/layered.svg');
   background-size: cover;
   background-blend-mode: overlay;
   position: relative;
@@ -85,49 +82,92 @@ button[disabled] {
   backdrop-filter: blur(10px);
 }
 
-.left h2 {
-  margin-top: 50px;
-  margin-bottom: 30px;
-  color: #000000;
-  text-align: center;
-}
-
-.left button {
-  width: 100%;
-  padding: 13px;
-  border: none;
-  border-radius: 20px;
-  background: #007BFF;
-  color: #FFFFFF;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.left button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
-}
-
-.right h2 {
+.left h2, .right h2 {
   margin: 0;
   margin-bottom: 30px;
+  font-weight: 600;
+  color: white;
+}
+
+.left h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  color: #333;
+}
+
+.right p {
+  margin: 20px 0;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #fff;
 }
 
 .right button {
   width: 30%;
   padding: 13px;
-  border: 2px solid #FFFFFF;
-  border-radius: 20px;
+  border: 2px solid white;
+  border-radius: 30px;
   background: none;
-  color: #FFFFFF;
-  font-size: 16px;
+  color: rgb(33, 33, 33);
+  font-size: 1.1rem;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .right button:hover {
-  background-color: #FFFFFF;
+  background-color: #fff;
   color: #1163ef;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 50%;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+form input {
+  padding: 4px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  box-sizing: border-box;
+  width: 100%;
+  color: #333;
+  border: 1px solid #ccc;
+  background-color: #e5fdf9;
+  transition: box-shadow 0.3s ease;
+}
+
+form input[type="date"] {
+  font-family: 'Poppins', sans-serif;
+}
+
+form input:focus {
+  border-color: #e5fdf9;
+  box-shadow: 0 0 8px rgba(255, 77, 77, 0.5);
+}
+
+form button[type="submit"] {
+  padding: 10px;
+  width: 60%;
+  border-radius: 10px;
+  background-color: #1163ef;
+  color: white;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: none;
+}
+
+form button[type="submit"]:hover {
+  background-color: #1163ef;
+  transform: translateY(-2px);
+}  

@@ -1,45 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
-</head>
-<body>
-  <div class="container">
-    <div class="left">
-      <h2>Sign In</h2>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div>
-          <input type="email" placeholder="Email" formControlName="email"/>
-          <div *ngIf="loginForm.controls['email'].touched && loginForm.controls
-              ['email'].invalid" class="error">
-            <span *ngIf="loginForm.controls['email'].errors?.['required']" 
-                class="error-message">This field is required.</span>
-            <span *ngIf="loginForm.controls['email'].errors?.['email']" 
-                class="error-message">Invalid email format.</span>
-          </div>
+<div class="container">
+  <div class="left">
+    <h2>Sign In</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div>
+        <input type="email" placeholder="Email" formControlName="email" />
+        <div *ngIf="loginForm.controls['email'].touched && loginForm.controls[
+            'email'].invalid" class="error">
+          <span *ngIf="loginForm.controls['email'].errors?.['required']" 
+              class="error-message">This field is required.</span>
+          <span *ngIf="loginForm.controls['email'].errors?.['email']" 
+              class="error-message">Invalid email format.</span>
         </div>
-        <div>
-          <input type="password" placeholder="Password" formControlName="password"/>
-          <div *ngIf="loginForm.controls['password'].touched && 
-              loginForm.controls['password'].invalid" class="error">
-            <span *ngIf="loginForm.controls['password'].errors?.['required']" 
-                class="error-message">This field is required.</span>
-          </div>
+      </div>
+      <div>
+        <input type="password" placeholder="Password" 
+            formControlName="password"/>
+        <div *ngIf="loginForm.controls['password'].touched && 
+            loginForm.controls['password'].invalid" class="error">
+          <span *ngIf="loginForm.controls['password'].errors?.['required']" 
+              class="error-message">This field is required.</span>
         </div>
-        <div class="forgot-password-container">
-          <button (click)="onForgotPassword($event)" class="forgot-password">
-              Forgot Password?</button>
-        </div>
-        <button type="submit" [disabled]="loginForm.invalid">Login</button>
-      </form>
-    </div>
-    <div class="right">
-      <h2>Welcome Back!</h2>
-      <button (click)="navigateToSignup()">Sign Up</button>
-    </div>
-  </div>  
-</body>
-</html>
+      </div>
+      <div class="forgot-password-container">
+        <button (click)="onForgotPassword($event)" class="forgot-password">
+            Forgot Password?</button>
+      </div>
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+  </div>
+  <div class="right">
+    <h2>Welcome Back!</h2>
+    <p>Your personalized academic companion is here to help you take control 
+        of your grades and stay on top of your academic journey. Let's get 
+        started and see how the GradeMate can help you achieve academic 
+        success!</p>
+    <button (click)="navigateToSignup()">Sign Up</button>
+  </div>
+</div>

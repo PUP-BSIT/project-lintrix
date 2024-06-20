@@ -1,32 +1,32 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
+:host {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%), 
-      url('/assets/layered.svg');
+  background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%),
+    url('/assets/layered.svg');
   background-size: cover;
   background-blend-mode: overlay;
   animation: gradientShift 10s infinite alternate;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
 @keyframes gradientShift {
   0% {
-    background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%), 
-        url('/assets/layered.svg');
+    background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%),
+      url('/assets/layered.svg');
   }
   50% {
-    background: linear-gradient(135deg, #95bafe 0%, #cdffd8 100%), 
-        url('/assets/layered.svg');
+    background: linear-gradient(135deg, #95bafe 0%, #cdffd8 100%),
+      url('/assets/layered.svg');
   }
   100% {
     background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%),
-        url('/assets/layered.svg');
+      url('/assets/layered.svg');
   }
-}
+}  
 
 h1, h2, h3 {
   font-family: 'Poppins', sans-serif;
@@ -34,9 +34,9 @@ h1, h2, h3 {
 
 .container {
   display: flex;
-  width: 800px;
-  height: 500px;
-  border-radius: 15px;
+  width: 900px;
+  height: 630px;
+  border-radius: 40px;
   overflow: hidden;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
@@ -129,8 +129,8 @@ button[disabled] {
   border-radius: 0.2em 0.2em 0 0;
   padding: 0.4em;
   color: black;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   box-sizing: border-box;
 }
 
@@ -171,13 +171,19 @@ button[disabled] {
   margin-bottom: 30px;
 }
 
+.right p {
+  margin: 20px 40px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
 .right button {
   width: 30%;
   padding: 13px;
   border: 2px solid #FFFFFF;
   border-radius: 20px;
   background: none;
-  color: #FFFFFF;
+  color: black;
   font-size: 16px;
   cursor: pointer;
   transition: background 0.1s ease, color 0.1s ease;
@@ -187,7 +193,7 @@ button[disabled] {
   background: #FFFFFF;
   color: #1163ef;
 }
-
+ 
 .error-message {
   color: red;
   font-size: 0.875em;
