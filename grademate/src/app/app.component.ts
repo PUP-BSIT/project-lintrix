@@ -10,8 +10,7 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   isAuthRoute(): boolean {
-    const authRoutes = ['/login', '/signup'];
-    return authRoutes.includes(this.router.url);
+    return this.router.url === '/login' || this.router.url === '/signup';
   }
 
   isDashboardRoute(): boolean {
