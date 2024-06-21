@@ -1,11 +1,11 @@
 :host {
   margin: 0;
-  padding: 0;
+  padding: 2.1%;
   font-family: 'Poppins', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%), url('/assets/layered.svg');
   background-size: cover;
   background-blend-mode: overlay;
@@ -17,9 +17,11 @@
   0% {
     background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%), url('/assets/layered.svg');
   }
+
   50% {
     background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%), url('/assets/layered.svg');
   }
+
   100% {
     background: linear-gradient(135deg, #cdffd8 0%, #95bafe 100%), url('/assets/layered.svg');
   }
@@ -73,8 +75,8 @@ button[disabled] {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background: linear-gradient(to bottom right, rgba(17, 99, 239, 0.8), 
-  rgba(11, 195, 152, 0.8)), url('/assets/layered.svg');
+  background: linear-gradient(to bottom right, rgba(17, 99, 239, 0.8),
+      rgba(11, 195, 152, 0.8)), url('/assets/layered.svg');
   background-size: cover;
   background-blend-mode: overlay;
   position: relative;
@@ -82,7 +84,8 @@ button[disabled] {
   backdrop-filter: blur(10px);
 }
 
-.left h2, .right h2 {
+.left h2,
+.right h2 {
   margin: 0;
   margin-bottom: 30px;
   font-weight: 600;
@@ -143,6 +146,8 @@ form input {
   border: 1px solid #ccc;
   background-color: #e5fdf9;
   transition: box-shadow 0.3s ease;
+  justify-content: center;
+  align-items: center;
 }
 
 form input[type="date"] {
@@ -170,4 +175,118 @@ form button[type="submit"] {
 form button[type="submit"]:hover {
   background-color: #1163ef;
   transform: translateY(-2px);
-}  
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: 80%;
+    height: auto;
+  }
+
+  .left, .right {
+    padding: 30px;
+  }
+
+  .left h2, .right h2 {
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+  }
+
+  .right p {
+    font-size: 1.1rem;
+  }
+
+  .right button {
+    width: 50%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  form {
+    padding: 25px;
+  }
+
+  form button[type="submit"] {
+    width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: none;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .left h2,
+  .right h2 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  .right p {
+    font-size: 1rem;
+  }
+
+  .right button {
+    width: 80%;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  form {
+    padding: 20px;
+    box-shadow: none;
+  }
+
+  form button[type="submit"] {
+    width: 80%;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    width: 90%;
+    height: auto;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: none;
+  }
+
+  .left, .right {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .left h2, .right h2 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+
+  .right p {
+    font-size: 0.9rem;
+  }
+
+  .right button {
+    width: 90%;
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  form {
+    padding: 15px;
+    box-shadow: none;
+  }
+
+  form button[type="submit"] {
+    width: 90%;
+  }
+}
