@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +7,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private router: Router) {}
+  currentUrl: string = '';
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    this.router.events.subscribe(() => {
+      this.currentUrl = this.router.url;
+    });
+  }
 
   isAuthRoute(): boolean {
-    return this.router.url === '/login' || this.router.url === '/signup';
+    return this.currentUrl === '/login' || this.currentUrl === '/signup';
   }
 
   isDashboardRoute(): boolean {
-    return this.router.url === '/dashboard';
+    return this.currentUrl === '/dashboard';
   }
 }
