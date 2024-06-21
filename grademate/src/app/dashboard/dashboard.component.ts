@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SignupService } from '../services/signup.service';
-import { AuthenticationService } from '../services/authentication.service';
+import { SignupService } from '../auth-service/signup.service';
+import { AuthenticationService } from '../auth-service/authenthication.service';
 
 interface Assessment {
   type: string;
@@ -18,11 +18,20 @@ interface Assessment {
 export class DashboardComponent implements OnInit {
   selectedMenu: string | null = 'home';
   selectedSubMenu: string | null = '';
-  user = {
+  selectedCourses: boolean[] = [];
+
+  profile = {
+    image: '',
+    profilePic: './assets/profile-pic.png',
     name: 'John Doe',
+    username: 'username.john',
     email: 'john.doe@example.com',
-    profilePic: 'path/to/default/profile/pic.jpg'
+    school: 'Polytechnic University of the Philippines',
+    gender: 'Male',
+    birthday: new Date(1990, 1, 1),
+    age: 30
   };
+
   newCourseName: string = '';
   editCourseName: string = '';
   courses: string[] = [];
@@ -33,9 +42,12 @@ export class DashboardComponent implements OnInit {
   courseToDeleteIndex: number | null = null;
   isEditAssessmentModalOpen: boolean = false;
   isDeleteAssessmentModalOpen: boolean = false;
-  dropdowns: { [key: string]: boolean } = {
-    courses: false,
-    'grade-entry': false,
+  isDeleteSelectedModalOpen: boolean = false;
+  dropdowns: any = {
+    quizzes: false,
+    activities: false,
+    exams: false,
+    projects: false
   };
 
   loggedInUsername: string = ''; // Initialize here
@@ -53,6 +65,9 @@ export class DashboardComponent implements OnInit {
   }
 
   // Assessments
+  quizzes: any[] = [];
+  selectedCourse: string = '';
+  selectedAssessmentType: string = '';
   assessments: Assessment[] = [];
   assessmentTypes: string[] = ['Quiz', 'Activity', 'Exam', 'Project'];
   newAssessmentName: string = '';
@@ -64,7 +79,7 @@ export class DashboardComponent implements OnInit {
   assessmentToDeleteIndex: number | null = null;
 
   logout(): void {
-    this.signupService.logout().subscribe((response: any) => {
+    this.signupService.logout().subscribe(response => {
       console.log(response);  // Handle the response if needed
       this.router.navigate(['/login']);  // Redirect to login page
     });
@@ -75,9 +90,12 @@ export class DashboardComponent implements OnInit {
       this.logout();
     } else {
       this.selectedMenu = menu;
-      this.selectedSubMenu = '';
+      if (menu !== 'courses') {
+        this.selectedSubMenu = '';
+      }
     }
   }
+  
 
   selectSubMenu(subMenu: string): void {
     this.selectedSubMenu = subMenu;
@@ -87,15 +105,24 @@ export class DashboardComponent implements OnInit {
     this.dropdowns[menu] = !this.dropdowns[menu];
   }
 
+  editImage(): void {
+    const uploadImageInput = document.getElementById('uploadImage') as HTMLInputElement;
+    uploadImageInput.click();
+  }
+
   onProfilePicChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.user.profilePic = e.target.result;
+        this.profile.profilePic = e.target.result;
       };
       reader.readAsDataURL(file);
     }
+  }
+
+  goToAccountInfo(): void {
+    this.selectedMenu = 'account';
   }
 
   // Courses
@@ -103,6 +130,7 @@ export class DashboardComponent implements OnInit {
     if (this.newCourseName) {
       this.courses.push(this.newCourseName);
       this.newCourseName = '';
+      this.selectedCourses.push(false);  // Add false for the new course selection
       this.closeModal();
     }
   }
@@ -141,13 +169,56 @@ export class DashboardComponent implements OnInit {
 
   closeDeleteModal(): void {
     this.isDeleteModalOpen = false;
+    this.courseToDeleteIndex = null;
   }
 
   confirmDelete(): void {
     if (this.courseToDeleteIndex !== null) {
       this.courses.splice(this.courseToDeleteIndex, 1);
+      this.selectedCourses.splice(this.courseToDeleteIndex, 1);  // Remove corresponding selection
       this.courseToDeleteIndex = null;
       this.closeDeleteModal();
+    }
+  }
+
+  openDeleteSelectedModal(): void {
+    this.isDeleteSelectedModalOpen = true;
+  }
+
+  closeDeleteSelectedModal(): void {
+    this.isDeleteSelectedModalOpen = false;
+  }
+
+  confirmDeleteSelected(): void {
+    const indicesToDelete: number[] = [];
+    for (let i = 0; i < this.selectedCourses.length; i++) {
+      if (this.selectedCourses[i]) {
+        indicesToDelete.push(i);
+      }
+    }
+    indicesToDelete.sort((a, b) => b - a); 
+    indicesToDelete.forEach(index => {
+      this.courses.splice(index, 1);
+      this.selectedCourses.splice(index, 1);
+    });
+    this.closeDeleteSelectedModal();
+  }
+
+  toggleSelectAll(event: Event): void {
+    const checked = (event.target as HTMLInputElement).checked;
+    this.selectedCourses = this.selectedCourses.map(() => checked);
+  }
+
+  anyCourseSelected(): boolean {
+    return this.selectedCourses.some(selected => selected);
+  }
+
+  checkSelectedCourses(): void {
+    if (this.selectedCourses.every(selected => !selected)) {
+      const selectAllCheckbox = document.querySelector('input[type="checkbox"]') as HTMLInputElement;
+      if (selectAllCheckbox) {
+        selectAllCheckbox.checked = false;
+      }
     }
   }
 
@@ -237,4 +308,20 @@ export class DashboardComponent implements OnInit {
   getGrandTotal(): number {
     return this.assessments.reduce((total, assessment) => total + this.getWeightedGrade(assessment), 0);
   }
-}
+  get showQuizzes(): boolean {
+    return this.selectedAssessmentType === 'Quiz';
+  }
+
+  get showActivities(): boolean {
+    return this.selectedAssessmentType === 'Activity';
+  }
+
+  get showExams(): boolean {
+    return this.selectedAssessmentType === 'Exam';
+  }
+
+  get showProjects(): boolean {
+    return this.selectedAssessmentType === 'Project';
+  }
+
+} 
