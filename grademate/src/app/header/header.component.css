@@ -21,12 +21,16 @@ header {
 nav a {
     color: black;
     text-decoration: none;
-    margin: 0 15px;
+    margin: 0 25px;
     transition: color 0.3s ease-in-out;
 }
   
 nav a:hover {
     color: white;
+}
+
+nav {
+    margin-right: 30px;
 }
   
 @keyframes slideDown {
