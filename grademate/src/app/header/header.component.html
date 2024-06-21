@@ -1,10 +1,10 @@
 <header>
   <div class="logo">GRADEMATE</div>
   <nav>
-    <a routerLink="/">Home</a>
-    <a routerLink="/about-us">About Us</a>
-    <a routerLink="/faqs">FAQs</a>
-    <a routerLink="/login">Login</a>
-    <a routerLink="/signup">Sign Up</a>
+    <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/about-us" routerLinkActive="active-link">About Us</a>
+    <a routerLink="/faqs" routerLinkActive="active-link">FAQs</a>
+    <a routerLink="/login" routerLinkActive="active-link" class="login-link">Login</a>
+    <a routerLink="/signup" routerLinkActive="active-link" class="signup-link">Sign Up</a>
   </nav>
 </header>
