@@ -10,7 +10,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 2px;
+  position: fixed;
   background-color: #1e7989;
   color: #fff;
   position: fixed;
@@ -25,6 +26,7 @@ body {
 
 .university-name {
   font-size: 18px;
+  text-align: center;
 }
 
 .user-info {
@@ -36,12 +38,13 @@ body {
   margin-right: 10px;
 }
 
-.profile-pic {
-  width: 40px;
-  height: 40px;
-  background-color: #e5fdf9;
+.header-profile img {
+  width: 50px !important; /* Adjust size as needed */
+  height: 50px !important; /* Adjust size as needed */
   border-radius: 50%;
-  margin-right: 15px;
+  margin-right: 100px;
+  box-shadow: none; /* Remove box-shadow if needed */
+  margin: 2px; /* Reset margin */
 }
 
 .container {
@@ -334,36 +337,222 @@ tfoot td[colspan="3"] {
   text-align: right;
 }
 
+/*Account Menu CSS*/
 .account-info {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.profile-pic-edit {
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 30px;
+  padding: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  width: 70%;
+  height: 480px;
+  background: #12c2e9;
+  background: linear-gradient(to right, #4AB7FF, #20DEFF, #58F7ED);
+  margin-left: 220px;
+}
+
+.left-container {
+  background: #000000;
+  background: linear-gradient(to right, #A9FFE7, #49C5FE);
+  flex: 1;
+  max-width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 430px;
+  padding: 10px;
+  margin: 30px;
+  border-radius: 20px;
+  box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.right-container {
+  background: linear-gradient(to right, #A9FFE7, #49C5FE);
+  flex: 1;
+  max-width: 70%;
+  height: 430px;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 30px;
+  color: #0F2F58;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.right-container h2 {
+  font-size: 30px;
+  font-weight: 800px;
+  margin-bottom: 5px;
+}
+
+.email {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.school-container {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  margin-bottom: 20px;
+  background-color: #0F2F58;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.school, .course {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.user-information {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.other-info {
+  text-align: center;
+}
+
+.gender {
+  font-size: 20px;
+  font-weight: 600;
+  display: block;
+}
+
+.birthday {
+  font-size: 20px;
+  font-weight: 600;
+  display: block;
+}
+
+.age {
+  font-size: 20px;
+  font-weight: 600;
+  display: block;
+}
+
+.label {
+  font-size: 14px;
+}
+
+.profile-image-container {
   position: relative;
+  text-align: center;
 }
 
-.profile-pic-edit img {
-  width: 100px;
-  height: 100px;
+img {
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
+  margin: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.profile-pic-edit input[type="file"] {
+
+#editImageButton {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100px;
-  height: 100px;
-  opacity: 0;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff; 
+  border: none;
+  padding: 5px 10px;
   cursor: pointer;
+  border-radius: 5px;
+  color: #0F2F58; 
+  font-size: 14px; 
+  text-align: center;
 }
 
-.user-details {
-  margin-top: 20px;
+h2 {
+  font-size: 24px;
+  margin-bottom: 5px;
 }
 
-.user-details p {
-  margin: 5px 0;
+h3 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.gradienttext {
+  background-image: linear-gradient(to right, #000000 0%, #4AB7FF 100%);
+  color: transparent;
+  -webkit-background-clip: text;
+}
+
+.course-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+}
+
+.course-name {
+  flex-grow: 1;
+}
+
+.button-container {
+  margin-left: 10px;
+}
+
+.styled-button {
+  text-decoration: underline;
+  color: black;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px; 
+}
+
+.styled-button:hover {
+  text-decoration: none; 
+}
+
+.hidden-actions {
+  visibility: hidden;
+  background-color: white;
+}
+
+.styled-button {
+  background-color: white;
+  border: none;
+  color: black;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.styled-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.edit-link, .delete-link {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+  background-color: white;
+}
+
+.edit-link:hover, .delete-link:hover {
+  text-decoration: none;
 }
