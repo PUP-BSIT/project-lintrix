@@ -12,12 +12,16 @@ header {
   z-index: 1000;
   animation: slideDown 0.5s ease-in-out;
 }
-
+  
 .logo {
-  font-size: 1.5em;
-  font-weight: bold;
+  width: 180px;
 }
 
+.logo img {
+  max-width: 100%;
+  height: auto;
+}
+  
 nav a {
   color: black;
   text-decoration: none;
@@ -25,7 +29,7 @@ nav a {
   position: relative;
   transition: color 0.3s ease-in-out;
 }
-
+  
 nav a:not(.login-link):not(.signup-link)::after {
   content: '';
   display: block;
@@ -37,19 +41,19 @@ nav a:not(.login-link):not(.signup-link)::after {
   bottom: -5px;
   left: 0;
 }
-
+  
 nav a:not(.login-link):not(.signup-link):hover::after {
   width: 100%;
 }
-
+  
 nav a:hover {
   color: black; /* Keep the text color black on hover */
 }
-
+  
 nav a.active-link:not(.login-link):not(.signup-link)::after {
   width: 100%;
 }
-
+  
 nav a.login-link {
   padding: 5px 15px;
   border-radius: 5px;
@@ -57,29 +61,29 @@ nav a.login-link {
   margin-right: 10px;
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
-
+  
 nav a.login-link:hover {
-  color: white;
-  background-color: #95bafe;
+  color: #28783b;
+  background-color: #1e833631;
 }
-
+  
 nav a.signup-link {
-  color: rgb(7, 164, 7);
-  border: 2px solid #16b907;
+  color: #28783b;
+  border: 2px solid #3d9251;
   padding: 5px 10px;
   border-radius: 5px;
   transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
-
+  
 nav a.signup-link:hover {
   color: #ffffff;
-  background-color: #16b907;
+  background-color: #1e8335;
 }
-
+  
 nav {
   margin-right: 30px;
 }
-
+  
 @keyframes slideDown {
   from {
     top: -100px;

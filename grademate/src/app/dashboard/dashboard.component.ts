@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SignupService } from '../auth-service/signup.service';
-import { AuthenticationService } from '../auth-service/authenthication.service';
+import { SignupService } from '../services/signup.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 interface Assessment {
   type: string;
