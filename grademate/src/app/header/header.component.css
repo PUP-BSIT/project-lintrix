@@ -59,13 +59,13 @@ nav a.login-link {
 }
 
 nav a.login-link:hover {
-  color: #28783b;
-  background-color: #1e833631;
+  color: white;
+  background-color: #95bafe;
 }
 
 nav a.signup-link {
-  color: #28783b;
-  border: 2px solid #3d9251;
+  color: black;
+  border: 2px solid #95bafe;
   padding: 5px 10px;
   border-radius: 5px;
   transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
@@ -73,7 +73,7 @@ nav a.signup-link {
 
 nav a.signup-link:hover {
   color: #ffffff;
-  background-color: #1e8335;
+  background-color: #95bafe;
 }
 
 nav {
