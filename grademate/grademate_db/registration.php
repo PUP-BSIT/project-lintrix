@@ -22,6 +22,8 @@ if(isset($postdata) && !empty($postdata)) {
         exit;
     }
 
+    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
     $sql = "INSERT INTO users (
         first_name,
         last_name,
