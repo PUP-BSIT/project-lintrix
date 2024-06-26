@@ -1,15 +1,82 @@
 .about-us {
-    background-color: #95bafe;
-    color: black;
-    padding: 20px;
-    margin: 80px auto 20px auto;
-    max-width: 800px;
-    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    padding: 50px;
+    color: #003366;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    font-family: 'Arial', sans-serif;
+    margin: 0 auto;
+    transition: transform 0.3s ease-in-out;
+    background-image: url('/assets/about_us.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.about-us h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #003366;
+    text-shadow: 2px 2px #e5fdf9;
+}
+
+.about-us p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    margin-bottom: 40px;
+    color: #003366;
+}
+
+.team {
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.team h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #003366;
+}
+
+.team-members {
+    display: flex;
+    justify-content: space-around;
+}
+
+.team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     transition: transform 0.3s ease-in-out;
 }
-  
-.about-us:hover {
-    transform: scale(1.05);
+
+.team-member:hover {
+    transform: scale(1.1);
 }
-  
+
+.team-member img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    border: 5px solid #003366;
+}
+
+.team-member h3 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+    color: #003366;
+}
+
+.team-member p {
+    font-size: 1.1em;
+    color: rgba(0, 51, 102, 0.8);
+}
