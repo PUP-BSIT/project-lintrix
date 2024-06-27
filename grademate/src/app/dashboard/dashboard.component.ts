@@ -4,11 +4,12 @@ import { SignupService } from '../services/signup.service';
 import { AuthenticationService } from '../services/authentication.service';
 
 interface Assessment {
-  type: string;
   name: string;
-  grade: number;
-  weight: number;
+  grade: string;
+  weight: string;
 }
+
+type AssessmentType = 'Quiz' | 'Activity' | 'Exam' | 'Project';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,41 +17,37 @@ interface Assessment {
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  selectedMenu: string | null = 'home';
-  selectedSubMenu: string | null = '';
+  selectedMenu = 'assessment';
   selectedCourses: boolean[] = [];
+  selectedSubMenu: string | null = '';
+  selectedCourse = '';
+  selectedAssessmentType: AssessmentType | '' = '';
+  courses: string[] = [];
+  assessmentTypes: AssessmentType[] = ['Quiz', 'Activity', 'Exam', 'Project'];
 
-  profile = {
-    image: '',
-    profilePic: './assets/profile-pic.png',
-    name: 'John Doe',
-    username: 'username.john',
-    email: 'john.doe@example.com',
-    school: 'Polytechnic University of the Philippines',
-    gender: 'Male',
-    birthday: new Date(1990, 1, 1),
-    age: 30
+  assessments: Record<AssessmentType, Assessment[]> = {
+    Quiz: [],
+    Activity: [],
+    Exam: [],
+    Project: []
   };
 
-  newCourseName: string = '';
-  editCourseName: string = '';
-  courses: string[] = [];
-  isModalOpen: boolean = false;
-  isEditModalOpen: boolean = false;
-  isDeleteModalOpen: boolean = false;
+  newCourseName = '';
+  editCourseName = '';
+  isModalOpen = false;
+  isEditModalOpen = false;
+  isDeleteModalOpen = false;
   courseToEditIndex: number | null = null;
   courseToDeleteIndex: number | null = null;
-  isEditAssessmentModalOpen: boolean = false;
-  isDeleteAssessmentModalOpen: boolean = false;
-  isDeleteSelectedModalOpen: boolean = false;
-  dropdowns: any = {
+  isDeleteSelectedModalOpen = false;
+  dropdowns: Record<string, boolean> = {
     quizzes: false,
     activities: false,
     exams: false,
     projects: false
   };
 
-  loggedInUsername: string = ''; // Initialize here
+  loggedInUsername = '';
 
   constructor(
     private authService: AuthenticationService,
@@ -59,29 +56,14 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Fetch logged-in username when component initializes
-    this.loggedInUsername = this.authService.getLoggedInUsername() || ''; // Initialize based on the actual logic
+    this.loggedInUsername = this.authService.getLoggedInUsername() || '';
     console.log('Logged in username:', this.loggedInUsername);
   }
 
-  // Assessments
-  quizzes: any[] = [];
-  selectedCourse: string = '';
-  selectedAssessmentType: string = '';
-  assessments: Assessment[] = [];
-  assessmentTypes: string[] = ['Quiz', 'Activity', 'Exam', 'Project'];
-  newAssessmentName: string = '';
-  newAssessmentGrade: number | null = null;
-  newAssessmentWeight: number | null = null;
-  currentAssessmentType: string = '';
-  isAssessmentModalOpen: boolean = false;
-  assessmentToEditIndex: number | null = null;
-  assessmentToDeleteIndex: number | null = null;
-
   logout(): void {
     this.signupService.logout().subscribe(response => {
-      console.log(response);  // Handle the response if needed
-      this.router.navigate(['/login']);  // Redirect to login page
+      console.log(response);
+      this.router.navigate(['/login']);
     });
   }
 
@@ -95,7 +77,6 @@ export class DashboardComponent implements OnInit {
       }
     }
   }
-  
 
   selectSubMenu(subMenu: string): void {
     this.selectedSubMenu = subMenu;
@@ -105,32 +86,12 @@ export class DashboardComponent implements OnInit {
     this.dropdowns[menu] = !this.dropdowns[menu];
   }
 
-  editImage(): void {
-    const uploadImageInput = document.getElementById('uploadImage') as HTMLInputElement;
-    uploadImageInput.click();
-  }
-
-  onProfilePicChange(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.profile.profilePic = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-
-  goToAccountInfo(): void {
-    this.selectedMenu = 'account';
-  }
-
   // Courses
   addCourse(): void {
     if (this.newCourseName) {
       this.courses.push(this.newCourseName);
       this.newCourseName = '';
-      this.selectedCourses.push(false);  // Add false for the new course selection
+      this.selectedCourses.push(false);
       this.closeModal();
     }
   }
@@ -175,7 +136,7 @@ export class DashboardComponent implements OnInit {
   confirmDelete(): void {
     if (this.courseToDeleteIndex !== null) {
       this.courses.splice(this.courseToDeleteIndex, 1);
-      this.selectedCourses.splice(this.courseToDeleteIndex, 1);  // Remove corresponding selection
+      this.selectedCourses.splice(this.courseToDeleteIndex, 1);
       this.courseToDeleteIndex = null;
       this.closeDeleteModal();
     }
@@ -190,17 +151,16 @@ export class DashboardComponent implements OnInit {
   }
 
   confirmDeleteSelected(): void {
-    const indicesToDelete: number[] = [];
-    for (let i = 0; i < this.selectedCourses.length; i++) {
-      if (this.selectedCourses[i]) {
-        indicesToDelete.push(i);
-      }
-    }
-    indicesToDelete.sort((a, b) => b - a); 
+    const indicesToDelete: number[] = this.selectedCourses
+      .map((selected, index) => (selected ? index : -1))
+      .filter(index => index !== -1)
+      .sort((a, b) => b - a);
+
     indicesToDelete.forEach(index => {
       this.courses.splice(index, 1);
       this.selectedCourses.splice(index, 1);
     });
+
     this.closeDeleteSelectedModal();
   }
 
@@ -222,106 +182,82 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  // Assessment Modal
-  openAssessmentModal(assessmentType: string): void {
-    this.currentAssessmentType = assessmentType;
-    this.newAssessmentName = '';
-    this.newAssessmentGrade = null;
-    this.newAssessmentWeight = null;
-    this.isAssessmentModalOpen = true;
-    this.isEditAssessmentModalOpen = false;
+  addAssessment(type: AssessmentType) {
+    this.assessments[type].push({ name: '', grade: '', weight: '' });
   }
 
-  closeAssessmentModal(): void {
-    this.isAssessmentModalOpen = false;
-    this.isEditAssessmentModalOpen = false;
-  }
-
-  addAssessment(): void {
-    if (this.newAssessmentName && this.newAssessmentGrade !== null && this.newAssessmentWeight !== null) {
-      this.assessments.push({
-        type: this.currentAssessmentType,
-        name: this.newAssessmentName,
-        grade: this.newAssessmentGrade,
-        weight: this.newAssessmentWeight
-      });
-      this.newAssessmentName = '';
-      this.newAssessmentGrade = null;
-      this.newAssessmentWeight = null;
-      this.closeAssessmentModal();
+  updateAssessment(type: AssessmentType, index: number, field: string, target: EventTarget | null) {
+    if (target instanceof HTMLElement) {
+      const newValue = target.innerText;
+      this.assessments[type][index][field as keyof Assessment] = newValue;
     }
   }
 
-  openEditAssessmentModal(assessment: Assessment, type: string, index: number): void {
-    this.currentAssessmentType = type;
-    this.newAssessmentName = assessment.name;
-    this.newAssessmentGrade = assessment.grade;
-    this.newAssessmentWeight = assessment.weight;
-    this.isEditAssessmentModalOpen = true;
-    this.assessmentToEditIndex = index;
-    this.isAssessmentModalOpen = true;
+  deleteAssessment(type: AssessmentType, index: number) {
+    this.assessments[type].splice(index, 1);
   }
 
-  updateAssessment(): void {
-    if (this.assessmentToEditIndex !== null) {
-      this.assessments[this.assessmentToEditIndex] = {
-        type: this.currentAssessmentType,
-        name: this.newAssessmentName,
-        grade: this.newAssessmentGrade!,
-        weight: this.newAssessmentWeight!
-      };
-      this.closeAssessmentModal();
+  getAssessmentsByType(type: AssessmentType): Assessment[] {
+    return this.assessments[type];
+  }
+
+  getWeightedGrade(assessment: Assessment): string {
+    return (parseFloat(assessment.grade) * parseFloat(assessment.weight) / 100).toFixed(2);
+  }
+
+  getTotalByType(type: AssessmentType): string {
+    return this.assessments[type].reduce((total, assessment) => {
+      return total + parseFloat(this.getWeightedGrade(assessment));
+    }, 0).toFixed(2);
+  }
+
+  navigateCell(event: KeyboardEvent): void {
+    const target = event.target as HTMLElement;
+    const cell = target.closest('td');
+    if (!cell) return;
+
+    const row = cell.closest('tr');
+    if (!row) return;
+
+    const table = row.closest('table');
+    if (!table) return;
+
+    let cellIndex = Array.from(row.children).indexOf(cell);
+    let newRow: HTMLElement | null = null;
+    let newCell: HTMLElement | null = null;
+
+    switch (event.key) {
+        case 'ArrowUp':
+            newRow = row.previousElementSibling as HTMLElement;
+            if (newRow) {
+                newCell = newRow.children[cellIndex] as HTMLElement;
+            }
+            break;
+        case 'ArrowDown':
+            newRow = row.nextElementSibling as HTMLElement;
+            if (newRow) {
+                newCell = newRow.children[cellIndex] as HTMLElement;
+            }
+            break;
+        case 'ArrowLeft':
+            if (cellIndex > 0) {
+                newCell = row.children[cellIndex - 1] as HTMLElement;
+            }
+            break;
+        case 'ArrowRight':
+            if (cellIndex < row.children.length - 1) {
+                newCell = row.children[cellIndex + 1] as HTMLElement;
+            }
+            break;
     }
-  }
 
-  openDeleteAssessmentModal(assessment: Assessment, type: string, index: number): void {
-    this.currentAssessmentType = type;
-    this.assessmentToDeleteIndex = index;
-    this.isDeleteAssessmentModalOpen = true;
-  }
-
-  closeDeleteAssessmentModal(): void {
-    this.isDeleteAssessmentModalOpen = false;
-  }
-
-  confirmDeleteAssessment(): void {
-    if (this.assessmentToDeleteIndex !== null) {
-      this.assessments.splice(this.assessmentToDeleteIndex, 1);
-      this.assessmentToDeleteIndex = null;
-      this.closeDeleteAssessmentModal();
+    if (newCell) {
+        newCell.focus();
+        event.preventDefault();
     }
-  }
+}
 
-  getAssessmentsByType(type: string): Assessment[] {
-    return this.assessments.filter(assessment => assessment.type === type);
-  }
-
-  getWeightedGrade(assessment: Assessment): number {
-    return (assessment.grade * assessment.weight) / 100;
-  }
-
-  getTotalByType(type: string): number {
-    const assessmentsOfType = this.getAssessmentsByType(type);
-    return assessmentsOfType.reduce((total, assessment) => total + this.getWeightedGrade(assessment), 0);
-  }
-
-  getGrandTotal(): number {
-    return this.assessments.reduce((total, assessment) => total + this.getWeightedGrade(assessment), 0);
-  }
-  get showQuizzes(): boolean {
-    return this.selectedAssessmentType === 'Quiz';
-  }
-
-  get showActivities(): boolean {
-    return this.selectedAssessmentType === 'Activity';
-  }
-
-  get showExams(): boolean {
-    return this.selectedAssessmentType === 'Exam';
-  }
-
-  get showProjects(): boolean {
-    return this.selectedAssessmentType === 'Project';
-  }
-
-} 
+trackByFn(index: number): number {
+  return index;
+}
+}
