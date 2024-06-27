@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SignupService } from '../services/signup.service';
-import { AuthenticationService } from '../services/authentication.service';
 
 interface Assessment {
   name: string;
@@ -40,6 +39,7 @@ export class DashboardComponent implements OnInit {
   courseToEditIndex: number | null = null;
   courseToDeleteIndex: number | null = null;
   isDeleteSelectedModalOpen = false;
+  isLogoutModalOpen: boolean = false;
   dropdowns: Record<string, boolean> = {
     quizzes: false,
     activities: false,
@@ -48,36 +48,17 @@ export class DashboardComponent implements OnInit {
   };
 
   loggedInUsername = '';
+  logout: any;
 
   constructor(
-    private authService: AuthenticationService,
     private signupService: SignupService,
     private router: Router
   ) {}
-
+  
   ngOnInit(): void {
-    this.loggedInUsername = this.authService.getLoggedInUsername() || '';
-    console.log('Logged in username:', this.loggedInUsername);
+    throw new Error('Method not implemented.');
   }
-
-  logout(): void {
-    this.signupService.logout().subscribe(response => {
-      console.log(response);
-      this.router.navigate(['/login']);
-    });
-  }
-
-  selectMenu(menu: string): void {
-    if (menu === 'logout') {
-      this.logout();
-    } else {
-      this.selectedMenu = menu;
-      if (menu !== 'courses') {
-        this.selectedSubMenu = '';
-      }
-    }
-  }
-
+  
   selectSubMenu(subMenu: string): void {
     this.selectedSubMenu = subMenu;
   }
@@ -260,4 +241,24 @@ export class DashboardComponent implements OnInit {
 trackByFn(index: number): number {
   return index;
 }
+
+  selectMenu(menu: string) {
+    this.selectedMenu = menu;
+    if (menu === 'logout') {
+      this.openLogoutModal();
+    }
+  }
+
+  openLogoutModal(): void {
+    this.isLogoutModalOpen = true;
+  }
+
+  closeLogoutModal(): void {
+    this.isLogoutModalOpen = false;
+  }
+
+  confirmLogout(): void {
+    this.router.navigate(['/login']);
+  }
+
 }

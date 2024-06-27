@@ -29,11 +29,22 @@
       <div class="menu-item" (click)="selectMenu('darkmode')">
         <i class='bx bxs-moon'></i> Dark Mode
       </div>
-      <div class="menu-item" (click)="selectMenu('logout')">
+      <div class="menu-items" (click)="selectMenu('logout')">
         <i class='bx bxs-exit'></i> Logout
       </div>
-    </div>    
+    </div>
   </div>
+  <div class="content">
+    <ng-container *ngIf="selectedMenu === 'logout'">
+    <div *ngIf="isLogoutModalOpen" class="modal-logout">
+      <div class="modal-content">
+        <span class="close" (click)="closeLogoutModal()">&times;</span>
+        <p>Are you sure you want to Logout?</p>
+        <button class="confirm-logout-button" (click)="confirmLogout()">Yes</button>
+        <button class="cancel-logout-button" (click)="closeLogoutModal()">No</button>
+      </div>
+    </div>
+    </ng-container>
 <div class="content">
   <ng-container *ngIf="selectedMenu === 'courses'">
     <div *ngIf="isModalOpen" class="modal">
