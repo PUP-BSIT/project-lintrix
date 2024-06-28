@@ -387,7 +387,4 @@ trackByFn(index: number): number {
   confirmLogout(): void {
     this.router.navigate(['/login']);
   }
-
-
-
 }
