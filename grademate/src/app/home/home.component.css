@@ -1,5 +1,6 @@
 .home {
-    background: url('/assets/home.png') no-repeat, url('/assets/grade.jpg') no-repeat;
+    background: url('/assets/home.png') no-repeat, url('/assets/grade.jpg') 
+        no-repeat;
     background-size: 30%, cover;
     background-position: top right, center;
     padding: 130px;
