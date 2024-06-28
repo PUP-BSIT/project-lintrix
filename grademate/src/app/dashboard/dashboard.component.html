@@ -27,8 +27,9 @@
       <i class='bx bxs-user'></i> Account
     </div>
     <div class="bottom-items">
-      <div class="menu-item" (click)="selectMenu('darkmode')">
-        <i class='bx bxs-moon'></i> Dark Mode
+      <div>
+        <button (click)="toggleDarkMode()" class="dark-mode-toggle">
+        <i class='bx bxs-moon'></i>Dark Mode</button>
       </div>
       <div class="menu-items" (click)="selectMenu('logout')">
         <i class='bx bxs-exit'></i> Logout
