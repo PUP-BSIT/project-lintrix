@@ -154,6 +154,18 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  /* Darkmode */
+  isDarkMode: boolean = false;
+
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+    document.body.classList.toggle('dark-mode', this.isDarkMode);
+    const elements = document.querySelectorAll('.header, .sidebar, .content, .table-container, table, th, td, .card, .menu-item, button, .modal-content');
+    elements.forEach((element) => {
+      element.classList.toggle('dark-mode', this.isDarkMode);
+    });
+  }
+
   // Assessments
   quizzes: any[] = [];
   newAssessmentName: string = '';
@@ -375,7 +387,4 @@ trackByFn(index: number): number {
   confirmLogout(): void {
     this.router.navigate(['/login']);
   }
-
-
-
 }
