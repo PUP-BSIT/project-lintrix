@@ -272,13 +272,23 @@ export class DashboardComponent implements OnInit {
     this.assessments[type].push({ name: '', grade: '', weight: '' });
   }
 
-  updateAssessment(type: AssessmentType, index: number, field: string, target: EventTarget | null) {
+  updateAssessment(type: AssessmentType, index: number, field: keyof Assessment, target: EventTarget | null) {
     if (target instanceof HTMLElement) {
-      const newValue = target.innerText;
-      this.assessments[type][index][field as keyof Assessment] = newValue;
+      const inputValue = (target as HTMLInputElement).innerText.trim();
+  
+      switch (field) {
+        case 'grade':
+          const grade = parseFloat(inputValue);
+          this.assessments[type][index].grade = isNaN(grade) ? '' : grade.toString();
+          (target as HTMLElement).innerText = this.assessments[type][index].grade;
+          break;
+        case 'weight':
+          const weight = parseFloat(inputValue);
+          this.assessments[type][index].weight = isNaN(weight) ? '' : weight.toString();
+          break;
+      }
     }
-  }
-
+  } 
   deleteAssessment(type: AssessmentType, index: number) {
     this.assessments[type].splice(index, 1);
   }
@@ -365,4 +375,7 @@ trackByFn(index: number): number {
   confirmLogout(): void {
     this.router.navigate(['/login']);
   }
+
+
+
 }
