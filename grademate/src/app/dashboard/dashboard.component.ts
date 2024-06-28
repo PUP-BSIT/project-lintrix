@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SignupService } from '../services/signup.service';
+import { StudentService } from '../services/student.service';
 
 interface Assessment {
   name: string;
@@ -31,11 +32,38 @@ export class DashboardComponent implements OnInit {
     Project: []
   };
 
-  newCourseName = '';
-  editCourseName = '';
-  isModalOpen = false;
-  isEditModalOpen = false;
-  isDeleteModalOpen = false;
+  //account
+  profile = {
+    image: '',
+    profilePic: './assets/profile-pic.png',
+    name: '',
+    username: '',
+    email: '',
+    school: '',
+    gender: '',
+    birthday: new Date(1990, 1, 1),
+    age: 30
+  };
+
+  studentData: any;
+  newStudentData: any = {
+    first_name: '',
+    middle_name: '',
+    surname: '',
+    email: '',
+    birthdate: '',
+    gender: '',
+    password: '',
+    university: '',
+    academic_level: '',
+    username: ''
+  };
+
+  newCourseName: string = '';
+  editCourseName: string = '';
+  isModalOpen: boolean = false;
+  isEditModalOpen: boolean = false;
+  isDeleteModalOpen: boolean = false;
   courseToEditIndex: number | null = null;
   courseToDeleteIndex: number | null = null;
   isDeleteSelectedModalOpen = false;
@@ -52,12 +80,89 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private signupService: SignupService,
-    private router: Router
+    private router: Router,
+    private studentService: StudentService
   ) {}
-  
+
   ngOnInit(): void {
+    this.getStudent();
     throw new Error('Method not implemented.');
   }
+
+  getStudent() {
+    this.studentService.getStudent().subscribe({
+      next: data => {
+        this.studentData = data;
+        this.profile = {
+          image: '',
+          profilePic: data.profilePic || './assets/profile-pic.png',
+          name: data.name,
+          username: data.username,
+          email: data.email,
+          school: data.university || 'Unknown University',
+          gender: data.gender,
+          birthday: new Date(data.birthdate),
+          age: this.calculateAge(new Date(data.birthdate))
+        };
+      },
+      error: error => {
+        console.error('Error fetching student data:', error);
+      }
+    });
+  }
+
+  calculateAge(birthday: Date): number {
+    const ageDifMs = Date.now() - birthday.getTime();
+    const ageDate = new Date(ageDifMs);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
+  createStudent() {
+    this.studentService.createStudent(this.newStudentData).subscribe({
+      next: data => {
+        console.log('Student created:', data);
+        this.getStudent(); // Refresh student data
+      },
+      error: error => {
+        console.error('Error creating student:', error);
+      }
+    });
+  }
+
+  updateStudent() {
+    this.studentService.updateStudent(this.studentData).subscribe({
+      next: data => {
+        console.log('Student updated:', data);
+        this.getStudent(); // Refresh student data
+      },
+      error: error => {
+        console.error('Error updating student:', error);
+      }
+    });
+  }
+
+  deleteStudent() {
+    const studentId = this.studentData.id;
+    this.studentService.deleteStudent(studentId).subscribe({
+      next: data => {
+        console.log('Student deleted:', data);
+        this.studentData = null; // Clear student data
+      },
+      error: error => {
+        console.error('Error deleting student:', error);
+      }
+    });
+  }
+
+  // Assessments
+  quizzes: any[] = [];
+  newAssessmentName: string = '';
+  newAssessmentGrade: number | null = null;
+  newAssessmentWeight: number | null = null;
+  currentAssessmentType: string = '';
+  isAssessmentModalOpen: boolean = false;
+  assessmentToEditIndex: number | null = null;
+  assessmentToDeleteIndex: number | null = null;
   
   selectSubMenu(subMenu: string): void {
     this.selectedSubMenu = subMenu;
@@ -260,5 +365,4 @@ trackByFn(index: number): number {
   confirmLogout(): void {
     this.router.navigate(['/login']);
   }
-
 }

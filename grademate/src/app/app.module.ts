@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthenticationService } from './services/authentication.service';
 import { SignupService } from './services/signup.service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +18,9 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { FaqsComponent } from './faqs/faqs.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoginService } from './services/login.service';
+import { StudentService } from './services/student.service';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 @NgModule({
@@ -43,7 +45,7 @@ import { FooterComponent } from './footer/footer.component';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [AuthenticationService, SignupService],
+  providers: [LoginService, SignupService, StudentService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,26 +1,128 @@
-<div class="container">
-  <div class="right">
-    <h2>Welcome Back!</h2>
-    <p>Your personalized academic companion is here to help you take control 
-        of your grades and stay on top of your academic journey.</p>
-    <button (click)="navigateToLogin()">Sign In</button>
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="form-group">
+      <label for="first_name">First Name</label>
+      <input id="first_name" formControlName="first_name" class="form-control">
+      <div *ngIf="signupForm.get('first_name')?.invalid && (signupForm.get('first_name')?.dirty || signupForm.get('first_name')?.touched)" class="error-message">
+        <div *ngIf="signupForm.get('first_name')?.errors?.['required']">First Name is required</div>
+        <div *ngIf="signupForm.get('first_name')?.errors?.['invalidCharacters']">First Name cannot include numbers or symbols</div>
+        <div *ngIf="signupForm.get('first_name')?.errors?.['invalidPunctuation']">First Name cannot include invalid punctuation marks</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="middle_name">Middle Name</label>
+      <input id="middle_name" formControlName="middle_name" class="form-control">
+      <div *ngIf="signupForm.get('middle_name')?.invalid && (signupForm.get('middle_name')?.dirty || signupForm.get('middle_name')?.touched)" class="error-message">
+        <div *ngIf="signupForm.get('middle_name')?.errors?.['required']">Middle Name is required</div>
+        <div *ngIf="signupForm.get('middle_name')?.errors?.['invalidCharacters']">Middle Name cannot include numbers or symbols</div>
+        <div *ngIf="signupForm.get('middle_name')?.errors?.['invalidPunctuation']">Middle Name cannot include invalid punctuation marks</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="surname">Surname</label>
+      <input id="surname" formControlName="surname" class="form-control">
+      <div *ngIf="signupForm.get('surname')?.invalid && (signupForm.get('surname')?.dirty || signupForm.get('surname')?.touched)" class="error-message">
+        <div *ngIf="signupForm.get('surname')?.errors?.['required']">Surname is required</div>
+        <div *ngIf="signupForm.get('surname')?.errors?.['invalidCharacters']">Surname cannot include numbers or symbols</div>
+        <div *ngIf="signupForm.get('surname')?.errors?.['invalidPunctuation']">Surname cannot include invalid punctuation marks</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" class="form-control"/>
+      <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="error-message">
+        <div *ngIf="signupForm.get('email')?.errors?.['required']">Email is required</div>
+        <div *ngIf="signupForm.get('email')?.errors?.['email']">Valid email is required</div>
+        <div *ngIf="signupForm.get('email')?.errors?.['emailExists']">Email already exists</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="birthdate">Birthdate</label>
+      <input id="birthdate" type="date" formControlName="birthdate" class="form-control"/>
+      <div *ngIf="signupForm.get('birthdate')?.invalid && signupForm.get('birthdate')?.touched" class="error-message">
+        Birthdate is required
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select id="gender" formControlName="gender" class="form-control">
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <div *ngIf="signupForm.get('gender')?.invalid && (signupForm.get('gender')?.dirty || signupForm.get('gender')?.touched)" class="error-message">
+        <div *ngIf="signupForm.get('gender')?.errors?.['required']">Gender is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="university">University</label>
+      <input id="university" type="text" formControlName="university" class="form-control"/>
+      <div *ngIf="signupForm.get('university')?.invalid && signupForm.get('university')?.touched" class="error-message">
+        <div *ngIf="signupForm.get('university')?.errors?.['required']">University is required</div>
+        <div *ngIf="signupForm.get('university')?.errors?.['pattern']">
+          University cannot include numbers or symbols, only characters and spaces
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="academic_level">Academic Level</label>
+      <select id="academic_level" formControlName="academic_level" class="form-control">
+        <option *ngFor="let level of academicLevels" [value]="level.name">{{ level.name }}</option>
+      </select>
+      <div *ngIf="signupForm.get('academic_level')?.invalid && signupForm.get('academic_level')?.touched" class="error-message">
+        Academic Level is required
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input id="username" type="text" formControlName="username" class="form-control"/>
+      <div *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched" class="error-message">
+        <div *ngIf="signupForm.get('username')?.errors?.['required']">Username is required</div>
+        <div *ngIf="signupForm.get('username')?.errors?.['minlength'] || signupForm.get('username')?.errors?.['maxlength']">
+          Username cannot be less than 8 characters
+        </div>
+        <div *ngIf="signupForm.get('username')?.errors?.['pattern']">
+          Username must be unique
+        </div>
+        <div *ngIf="signupForm.get('username')?.errors?.['usernameExists']">Username already exists</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password" class="form-control"/>
+      <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="error-message">
+        <div *ngIf="signupForm.get('password')?.errors?.['required']">Password is required.</div>
+        <div *ngIf="signupForm.get('password')?.errors?.['invalidPassword']">
+          Password must be unique and cannot be less than 8 characters
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="confirm_password">Confirm Password</label>
+      <input id="confirm_password" type="password" formControlName="confirm_password" class="form-control"/>
+      <div *ngIf="signupForm.hasError('passwordMismatch') && signupForm.get('confirm_password')?.touched" class="error-message">
+        Passwords do not match
+      </div>
+    </div>
+  
+    <div *ngIf="signupForm.invalid && (signupForm.dirty || signupForm.touched)">
+      <p>Please fill in all required fields correctly.</p>
+    </div>
+  
+    <button type="submit" [disabled]="signupForm.invalid" class="submit-button">Submit</button>
+
+    <div class="additional-options">
+      <a routerLink="/login">Already have an account? Login</a>
+    </div>
   </div>
-  <div class="left">
-    <h2>Create an account</h2>
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-      <input type="text" placeholder="Firstname" formControlName="first_name"/>
-      <input type="text" placeholder="Lastname" formControlName="last_name"/>
-      <input type="text" placeholder="Username" formControlName="username"/>
-      <input type="email" placeholder="Email" formControlName="email"/>
-      <input type="date" placeholder="Birthday" formControlName="birthday"/>
-      <input type="text" placeholder="Sex" formControlName="sex"/>
-      <input type="password" placeholder="Password" 
-          formControlName="password"/>
-      <input type="password" placeholder="Confirm Password" 
-          formControlName="confirmPassword" />
-      <input type="text" placeholder="University" 
-          formControlName="university"/>
-      <button type="submit" [disabled]="signupForm.invalid">Submit</button>
-    </form>
-  </div>
-</div>
+</form>

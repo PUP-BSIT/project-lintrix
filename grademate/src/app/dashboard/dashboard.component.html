@@ -2,9 +2,10 @@
   <div class="logo">
     <img src="assets/logo_text.png" alt="GRADEMATE Logo">
   </div>  
-  <div class="university-name">UNIVERSITY NAME</div>
+  <div class="university-name">{{ profile.school }}</div>
   <div class="user-info">
-    <span>{{ loggedInUsername }}</span>
+    <span>{{ profile.username }}</span>
+    <img [src]="" alt="Profile Image" id="header-profile-pic">
   </div>
 </div>
 <div class="container">
@@ -293,3 +294,42 @@
       </div>
     </div>
 </ng-container>
+
+<div *ngIf="selectedMenu === 'account'">
+  <div class="account-info">
+    <div class="card">
+      <div class="left-container">
+        <div class="profile-image-container">
+          <img [src]="profile.profilePic" alt="Profile Image" id="profileImage">
+          <input type="file" id="uploadImage" style="display: none;" accept="image/*">
+          <button id="editImageButton">Edit Profile Image</button>
+        </div>
+        <h2 class="gradienttext">{{ profile.name }}</h2>
+        <p>{{ profile.username }}</p>
+      </div>
+      <div class="right-container">
+        <h2 class="gradienttext">ACCOUNT DETAILS</h2>
+        <h3>{{ profile.name }}</h3>
+        <p class="email">{{ profile.email }}</p>
+        <div class="school-container">
+          <span class="school">School</span>
+          <span class="course">{{ profile.school }}</span>
+        </div>
+        <div class="user-information">
+          <div class="other-info">
+            <span class="gender">{{ profile.gender }}</span>
+            <span class="label">gender</span>
+          </div>
+          <div class="other-info">
+            <span class="birthday">{{ profile.birthday | date:'longDate' }}</span>
+            <span class="label">birthday</span>
+          </div>
+          <div class="other-info">
+            <span class="age">{{ profile.age }}</span>
+            <span class="label">age</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

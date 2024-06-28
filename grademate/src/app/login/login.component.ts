@@ -1,69 +1,59 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
-import { SignupService } from '../services/signup.service';
-import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  loginForm: FormGroup;
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private signupService: SignupService,
-    private authService: AuthenticationService,
-    private router: Router
-  ) {
+    private loginService: LoginService,
+    private snackBar: MatSnackBar,
+    private router: Router,
+  ) {}
+
+  ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      username: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;<>,.?\/\\-])[a-zA-Z\d!@#$%^&*()_+={}\[\]:;<>,.?\/\\-]{8,16}$/)]],
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+={}\[\]:;<>,.?\/\\-]).{8,16}/)]]
     });
   }
 
   onSubmit() {
-    if (this.loginForm.valid) {
-      this.signupService.login(this.loginForm.value).subscribe({
-        next: (response) => {
-          if (response.message === 'success') {
-            console.log('Login successful', response);
-            // Set the logged-in username
-            const username = this.loginForm.value.email;
-            this.authService.setLoggedInUsername(username);
-            console.log('Setting logged-in username:', username);
-            this.router.navigate(['/dashboard']);
-          } else {
-            console.log('Login failed', response);
-          }
-        },
-        error: (error) => {
-          console.log('Login error', error);
-        }
-      });
-    } else {
-      this.showValidationErrors();
+    if (this.loginForm.invalid) {
+      this.showSnackbar('Please fill in all required fields correctly.', 'Close');
+      return;
     }
-  }
 
-  showValidationErrors() {
-    Object.keys(this.loginForm.controls).forEach(field => {
-      const control = this.loginForm.get(field);
-      if (control && control.invalid) {
-        control.markAsTouched({ onlySelf: true });
+    this.loginService.login(this.loginForm.value).subscribe({
+      next: () => {
+        this.showSnackbar('Login successful!', 'Close');
+        this.loginForm.reset();  // Clear the form fields
+        this.router.navigate(['/dashboard']);
+      },
+      error: error => {
+        if (error.message.includes('401')) {
+          this.showSnackbar('Invalid username or password.', 'Close');
+        } else {
+          this.showSnackbar('Something went wrong. Please try again later.', 'Close');
+        }
       }
     });
-    alert('Please fill out all required fields correctly.');
   }
 
-  onForgotPassword(event: Event) {
-    event.preventDefault();
-    alert('Forgot password functionality not implemented yet.');
-  }
-
-  navigateToSignup() {
-    this.router.navigate(['/signup']);
-  }
+  private showSnackbar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 5000;
+    config.horizontalPosition = 'center';
+    config.verticalPosition = 'bottom';
+  
+    this.snackBar.open(message, action, config);
+  }  
 }

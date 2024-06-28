@@ -126,7 +126,7 @@ body {
 .content {
   flex-grow: 1;
   padding: 20px;
-  margin-left: 220px;
+  margin-left: 150px;
   overflow-y: auto;
   display: flex;
   justify-content: center;
