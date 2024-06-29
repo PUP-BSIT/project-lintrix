@@ -63,3 +63,57 @@
   margin: 0;
   color: #004d99;
 }
+
+/* For screens up to 768px */
+@media (max-width: 768px) {
+
+  .footer-section {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+/* For screens up to 425px */
+@media (max-width: 425px) {
+  .footer-section h3 {
+    font-size: 1.2em;
+  }
+
+  .footer-section p, .footer-section .social-link {
+    font-size: 0.9em;
+  }
+
+  .social-link {
+    margin: 0 5px;
+  }
+}
+
+/* For screens up to 375px */
+@media (max-width: 375px) {
+  .footer-section h3 {
+    font-size: 1em;
+  }
+
+  .footer-section p, .footer-section .social-link {
+    font-size: 0.8em;
+  }
+
+  .social-link {
+    margin: 0 3px;
+  }
+}
+
+/* For screens up to 320px */
+@media (max-width: 320px) {
+  .footer-section h3 {
+    font-size: 0.9em;
+  }
+
+  .footer-section p, .footer-section .social-link {
+    font-size: 0.75em;
+  }
+
+  .social-link {
+    margin: 0 2px;
+  }
+}
