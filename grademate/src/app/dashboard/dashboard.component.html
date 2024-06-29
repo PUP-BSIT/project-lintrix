@@ -42,8 +42,10 @@
       <div class="modal-content">
         <span class="close" (click)="closeLogoutModal()">&times;</span>
         <p>Are you sure you want to Logout?</p>
-        <button class="confirm-logout-button" (click)="confirmLogout()">Yes</button>
-        <button class="cancel-logout-button" (click)="closeLogoutModal()">No</button>
+        <button class="confirm-logout-button" (click)="confirmLogout()">
+          Yes</button>
+        <button class="cancel-logout-button" (click)="closeLogoutModal()">
+          No</button>
       </div>
     </div>
     </ng-container>
@@ -54,7 +56,8 @@
         <span class="close" (click)="closeModal()">&times;</span>
         <form (submit)="addCourse()">
           <label for="courseName">Course Name:</label>
-          <input id="courseName" [(ngModel)]="newCourseName" name="courseName" required />
+          <input id="courseName" [(ngModel)]="newCourseName" 
+            name="courseName" required />
           <button type="submit">Add Course</button>
         </form>
       </div>
@@ -64,7 +67,8 @@
         <span class="close" (click)="closeEditModal()">&times;</span>
         <form (submit)="updateCourse()">
           <label for="editCourseName">Edit Course Name:</label>
-          <input id="editCourseName" [(ngModel)]="editCourseName" name="editCourseName" required />
+          <input id="editCourseName" [(ngModel)]="editCourseName" 
+            name="editCourseName" required />
           <button type="submit">Update Course</button>
         </form>
       </div>
@@ -91,7 +95,9 @@
           <tr>
             <th class="course-header">
               <span>Course Name</span>
-              <button class="styled-button" (click)="openDeleteSelectedModal()" [disabled]="!anyCourseSelected()">
+              <button class="styled-button" 
+                (click)="openDeleteSelectedModal()" 
+                  [disabled]="!anyCourseSelected()">
                 🗑️ Delete 
               </button>                    
             </th>
@@ -100,7 +106,8 @@
         </thead>
         <tbody>
           <tr>
-            <td><span class="add-new-link" (click)="openModal()">Add New</span></td>
+            <td><span class="add-new-link" (click)="openModal()">
+              Add New</span></td>
             <td></td>
           </tr>
           <tr *ngIf="courses.length > 0">
@@ -112,12 +119,14 @@
           </tr>
           <tr *ngFor="let course of courses; let i = index">
             <td>
-              <input type="checkbox" [(ngModel)]="selectedCourses[i]" (change)="checkSelectedCourses()">
-                {{ course }}
+              <input type="checkbox" [(ngModel)]="selectedCourses[i]" 
+                (change)="checkSelectedCourses()">{{ course }}
             </td>
             <td [class.hidden-actions]="anyCourseSelected()">
-              <span class="edit-link" (click)="openEditModal(course, i)">Edit</span>
-              <span class="delete-link" (click)="openDeleteModal(i)">Delete</span>
+              <span class="edit-link" (click)="openEditModal(course, i)">
+                Edit</span>
+              <span class="delete-link" (click)="openDeleteModal(i)">
+                Delete</span>
             </td>
           </tr>
         </tbody>
@@ -126,20 +135,22 @@
   </ng-container>
 
   <ng-container *ngIf="selectedMenu === 'assessment'">
-    <!-- Dropdowns for Course and Assessment Type -->
     <div class="dropdown-container">
       <label for="courseDropdown">Course:</label>
       <select id="courseDropdown" [(ngModel)]="selectedCourse">
-        <option *ngFor="let course of courses" [value]="course">{{ course }}</option>
+        <option *ngFor="let course of courses" [value]="course">
+          {{ course }}</option>
       </select>
       <label for="assessmentDropdown">Assessment Type:</label>
       <select id="assessmentDropdown" [(ngModel)]="selectedAssessmentType">
-        <option *ngFor="let type of assessmentTypes" [value]="type">{{ type }}</option>
+        <option *ngFor="let type of assessmentTypes" [value]="type">
+          {{ type }}</option>
       </select>
     </div>
   
     <!-- Assessments Section -->
-    <div *ngIf="selectedAssessmentType === 'Quiz'" class="assessments-container">
+    <div *ngIf="selectedAssessmentType === 'Quiz'" 
+      class="assessments-container">
       <div class="table-container">
         <table>
           <thead>
@@ -153,19 +164,28 @@
           </thead>
           <tbody>
             <tr>
-              <td><button class="extravagant-button" (click)="addAssessment('Quiz')">Add Quiz</button></td>
+              <td><button class="extravagant-button" (click)="addAssessment('Quiz')">
+                Add Quiz</button></td>
               <td></td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
-            <tr *ngFor="let quiz of getAssessmentsByType('Quiz'); let i = index; trackBy: trackByFn">
-              <td contenteditable="true" tabindex="0" (blur)="updateAssessment('Quiz', i, 'name', $event.target)" (keydown)="navigateCell($event)">{{ quiz.name }}</td>
-              <td contenteditable="true" tabindex="0" (blur)="updateAssessment('Quiz', i, 'grade', $event.target)" (keydown)="navigateCell($event)">{{ quiz.grade }}</td>
-              <td contenteditable="true" tabindex="0" (blur)="updateAssessment('Quiz', i, 'weight', $event.target)" (keydown)="navigateCell($event)">{{ quiz.weight }}%</td>
+            <tr *ngFor="let quiz of getAssessmentsByType('Quiz'); 
+              let i = index; trackBy: trackByFn">
+              <td contenteditable="true" tabindex="0" (blur)="updateAssessment(
+                'Quiz', i, 'name', $event.target)" 
+                (keydown)="navigateCell($event)">{{ quiz.name }}</td>
+              <td contenteditable="true" tabindex="0" (blur)="updateAssessment(
+                'Quiz', i, 'grade', $event.target)" 
+                (keydown)="navigateCell($event)">{{ quiz.grade }}</td>
+              <td contenteditable="true" tabindex="0" (blur)="updateAssessment(
+                'Quiz', i, 'weight', $event.target)" 
+                (keydown)="navigateCell($event)">{{ quiz.weight }}%</td>
               <td>{{ getWeightedGrade(quiz) }}</td>
               <td>
-                <button class="extravagant-button delete" (click)="deleteAssessment('Quiz', i)">Delete</button>
+                <button class="extravagant-button delete" 
+                (click)="deleteAssessment('Quiz', i)">Delete</button>
               </td>
             </tr>
             <tr>
@@ -178,7 +198,8 @@
       </div>
     </div>
 
-    <div *ngIf="selectedAssessmentType === 'Activity'" class="assessments-container">
+    <div *ngIf="selectedAssessmentType === 'Activity'" 
+      class="assessments-container">
       <div class="table-container">
         <table>
           <thead>
@@ -192,23 +213,33 @@
           </thead>
           <tbody>
             <tr>
-              <td><button class="extravagant-button" (click)="addAssessment('Activity')">Add Activity</button></td>
+              <td><button class="extravagant-button" 
+                (click)="addAssessment('Activity')">Add Activity</button></td>
               <td></td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
-            <tr *ngFor="let activity of getAssessmentsByType('Activity'); let i = index; trackBy: trackByFn">
-              <td contenteditable="true" tabindex="0" (blur)="updateAssessment('Activity', i, 'name', $event.target)" (keydown)="navigateCell($event)">{{ activity.name }}</td>
-              <td contenteditable="true" tabindex="0" (blur)="updateAssessment('Activity', i, 'grade', $event.target)" (keydown)="navigateCell($event)">{{ activity.grade }}</td>
-              <td contenteditable="true" tabindex="0" (blur)="updateAssessment('Activity', i, 'weight', $event.target)" (keydown)="navigateCell($event)">{{ activity.weight }}%</td>
+            <tr *ngFor="let activity of getAssessmentsByType('Activity'); 
+              let i = index; trackBy: trackByFn">
+              <td contenteditable="true" tabindex="0" (blur)="updateAssessment(
+                'Activity', i, 'name', $event.target)" 
+                (keydown)="navigateCell($event)">{{ activity.name }}</td>
+              <td contenteditable="true" tabindex="0" (blur)="updateAssessment(
+                'Activity', i, 'grade', $event.target)" 
+                (keydown)="navigateCell($event)">{{ activity.grade }}</td>
+              <td contenteditable="true" tabindex="0" (blur)="updateAssessment(
+                'Activity', i, 'weight', $event.target)" 
+                (keydown)="navigateCell($event)">{{ activity.weight }}%</td>
               <td>{{ getWeightedGrade(activity) }}</td>
               <td>
-                <button class="extravagant-button delete" (click)="deleteAssessment('Activity', i)">Delete</button>
+                <button class="extravagant-button delete" 
+                  (click)="deleteAssessment('Activity', i)">Delete</button>
               </td>
             </tr>
             <tr>
-              <td colspan="3" style="text-align:right;">Total for Activities:</td>
+              <td colspan="3" style="text-align:right;">Total for 
+                Activities:</td>
               <td>{{ getTotalByType('Activity') }}</td>
               <td></td>
             </tr>
@@ -217,7 +248,8 @@
       </div>
     </div>
 
-    <div *ngIf="selectedAssessmentType === 'Exam'" class="assessments-container">
+    <div *ngIf="selectedAssessmentType === 'Exam'" 
+      class="assessments-container">
       <div class="table-container">
         <table>
           <thead>
@@ -231,19 +263,28 @@
           </thead>
           <tbody>
             <tr>
-              <td><button class="extravagant-button" (click)="addAssessment('Exam')">Add Exam</button></td>
+              <td><button class="extravagant-button" (click)="addAssessment(
+                'Exam')">Add Exam</button></td>
               <td></td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
-            <tr *ngFor="let exam of getAssessmentsByType('Exam'); let i = index; trackBy: trackByFn">
-              <td contenteditable="true" tabindex="0" (blur)="updateAssessment('Exam', i, 'name', $event.target)" (keydown)="navigateCell($event)">{{ exam.name }}</td>
-              <td contenteditable="true" tabindex="0" (blur)="updateAssessment('Exam', i, 'grade', $event.target)" (keydown)="navigateCell($event)">{{ exam.grade }}</td>
-              <td contenteditable="true" tabindex="0" (blur)="updateAssessment('Exam', i, 'weight', $event.target)" (keydown)="navigateCell($event)">{{ exam.weight }}%</td>
+            <tr *ngFor="let exam of getAssessmentsByType('Exam'); 
+              let i = index; trackBy: trackByFn">
+              <td contenteditable="true" tabindex="0" (blur)="updateAssessment(
+                'Exam', i, 'name', $event.target)" 
+                (keydown)="navigateCell($event)">{{ exam.name }}</td>
+              <td contenteditable="true" tabindex="0" (blur)="updateAssessment(
+                'Exam', i, 'grade', $event.target)" 
+                (keydown)="navigateCell($event)">{{ exam.grade }}</td>
+              <td contenteditable="true" tabindex="0" (blur)="updateAssessment(
+                'Exam', i, 'weight', $event.target)" 
+                (keydown)="navigateCell($event)">{{ exam.weight }}%</td>
               <td>{{ getWeightedGrade(exam) }}</td>
               <td>
-                <button class="extravagant-button delete" (click)="deleteAssessment('Exam', i)">Delete</button>
+                <button class="extravagant-button delete" 
+                  (click)="deleteAssessment('Exam', i)">Delete</button>
               </td>
             </tr>
             <tr>
@@ -256,7 +297,8 @@
       </div>
     </div>
 
-    <div *ngIf="selectedAssessmentType === 'Project'" class="assessments-container">
+    <div *ngIf="selectedAssessmentType === 'Project'" 
+      class="assessments-container">
       <div class="table-container">
         <table>
           <thead>
@@ -270,23 +312,33 @@
           </thead>
           <tbody>
             <tr>
-              <td><button class="extravagant-button" (click)="addAssessment('Project')">Add Project</button></td>
+              <td><button class="extravagant-button" (click)="addAssessment(
+                'Project')">Add Project</button></td>
               <td></td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
-            <tr *ngFor="let project of getAssessmentsByType('Project'); let i = index; trackBy: trackByFn">
-              <td contenteditable="true" tabindex="0" (blur)="updateAssessment('Project', i, 'name', $event.target)" (keydown)="navigateCell($event)">{{ project.name }}</td>
-              <td contenteditable="true" tabindex="0" (blur)="updateAssessment('Project', i, 'grade', $event.target)" (keydown)="navigateCell($event)">{{ project.grade }}</td>
-              <td contenteditable="true" tabindex="0" (blur)="updateAssessment('Project', i, 'weight', $event.target)" (keydown)="navigateCell($event)">{{ project.weight }}%</td>
+            <tr *ngFor="let project of getAssessmentsByType('Project'); 
+              let i = index; trackBy: trackByFn">
+              <td contenteditable="true" tabindex="0" (blur)="updateAssessment(
+                'Project', i, 'name', $event.target)" 
+                (keydown)="navigateCell($event)">{{ project.name }}</td>
+              <td contenteditable="true" tabindex="0" (blur)="updateAssessment(
+                'Project', i, 'grade', $event.target)" 
+                (keydown)="navigateCell($event)">{{ project.grade }}</td>
+              <td contenteditable="true" tabindex="0" (blur)="updateAssessment(
+                'Project', i, 'weight', $event.target)" 
+                (keydown)="navigateCell($event)">{{ project.weight }}%</td>
               <td>{{ getWeightedGrade(project) }}</td>
               <td>
-                <button class="extravagant-button delete" (click)="deleteAssessment('Project', i)">Delete</button>
+                <button class="extravagant-button delete" 
+                  (click)="deleteAssessment('Project', i)">Delete</button>
               </td>
             </tr>
             <tr>
-              <td colspan="3" style="text-align:right;">Total for Projects:</td>
+              <td colspan="3" style="text-align:right;">Total for 
+                Projects:</td>
               <td>{{ getTotalByType('Project') }}</td>
               <td></td>
             </tr>
@@ -301,8 +353,10 @@
     <div class="card">
       <div class="left-container">
         <div class="profile-image-container">
-          <img [src]="profile.profilePic" alt="Profile Image" id="profileImage">
-          <input type="file" id="uploadImage" style="display: none;" accept="image/*">
+          <img [src]="profile.profilePic" alt="Profile Image" 
+            id="profileImage">
+          <input type="file" id="uploadImage" style="display: none;" 
+            accept="image/*">
           <button id="editImageButton">Edit Profile Image</button>
         </div>
         <h2 class="gradienttext">{{ profile.name }}</h2>
@@ -322,7 +376,8 @@
             <span class="label">gender</span>
           </div>
           <div class="other-info">
-            <span class="birthday">{{ profile.birthday | date:'longDate' }}</span>
+            <span class="birthday">{{ profile.birthday | 
+              date:'longDate' }}</span>
             <span class="label">birthday</span>
           </div>
           <div class="other-info">
