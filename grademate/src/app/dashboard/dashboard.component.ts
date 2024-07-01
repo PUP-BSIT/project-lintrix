@@ -17,13 +17,13 @@ type AssessmentType = 'Quiz' | 'Activity' | 'Exam' | 'Project';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  selectedMenu = 'assessment';
   selectedCourses: boolean[] = [];
   selectedSubMenu: string | null = '';
   selectedCourse = '';
   selectedAssessmentType: AssessmentType | '' = '';
   courses: string[] = [];
   assessmentTypes: AssessmentType[] = ['Quiz', 'Activity', 'Exam', 'Project'];
+  selectedMenu = 'assessment';
 
   assessments: Record<AssessmentType, Assessment[]> = {
     Quiz: [],
@@ -317,6 +317,12 @@ export class DashboardComponent implements OnInit {
     return this.assessments[type].reduce((total, assessment) => {
       return total + parseFloat(this.getWeightedGrade(assessment));
     }, 0).toFixed(2);
+  }
+
+  checkSubjectSelection(): void {
+    if (!this.selectedCourse) {
+      alert('Please select a subject before proceeding.');
+    }
   }
 
   navigateCell(event: KeyboardEvent): void {

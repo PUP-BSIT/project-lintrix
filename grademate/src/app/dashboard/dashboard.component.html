@@ -15,7 +15,7 @@
       <i class='bx bxs-home'></i> Home
     </div>
     <div class="menu-item" (click)="selectMenu('courses')">
-      <i class='bx bxs-book-open'></i> Courses
+      <i class='bx bxs-book-open'></i> Subjects
     </div>
     <div class="menu-item" (click)="selectMenu('assessment')">
       <i class='bx bxs-book-alt'></i> Assessment
@@ -55,10 +55,10 @@
       <div class="modal-content">
         <span class="close" (click)="closeModal()">&times;</span>
         <form (submit)="addCourse()">
-          <label for="courseName">Course Name:</label>
+          <label for="courseName">Subject Name:</label>
           <input id="courseName" [(ngModel)]="newCourseName" 
             name="courseName" required />
-          <button type="submit">Add Course</button>
+          <button type="submit">Add Subject</button>
         </form>
       </div>
     </div>
@@ -66,7 +66,7 @@
       <div class="modal-content">
         <span class="close" (click)="closeEditModal()">&times;</span>
         <form (submit)="updateCourse()">
-          <label for="editCourseName">Edit Course Name:</label>
+          <label for="editCourseName">Edit Subject Name:</label>
           <input id="editCourseName" [(ngModel)]="editCourseName" 
             name="editCourseName" required />
           <button type="submit">Update Course</button>
@@ -76,7 +76,7 @@
     <div *ngIf="isDeleteModalOpen" class="modal">
       <div class="modal-content">
         <span class="close" (click)="closeDeleteModal()">&times;</span>
-        <p>Are you sure you want to delete this course?</p>
+        <p>Are you sure you want to delete this subject?</p>
         <button (click)="confirmDelete()">Yes</button>
         <button (click)="closeDeleteModal()">No</button>
       </div>
@@ -84,7 +84,7 @@
     <div *ngIf="isDeleteSelectedModalOpen" class="modal">
       <div class="modal-content">
         <span class="close" (click)="closeDeleteSelectedModal()">&times;</span>
-        <p>Are you sure you want to delete the selected courses?</p>
+        <p>Are you sure you want to delete the selected subjects?</p>
         <button (click)="confirmDeleteSelected()">Yes</button>
         <button (click)="closeDeleteSelectedModal()">No</button>
       </div>
@@ -94,7 +94,7 @@
         <thead>
           <tr>
             <th class="course-header">
-              <span>Course Name</span>
+              <span>Subject Name</span>
               <button class="styled-button" 
                 (click)="openDeleteSelectedModal()" 
                   [disabled]="!anyCourseSelected()">
@@ -136,7 +136,7 @@
 
   <ng-container *ngIf="selectedMenu === 'assessment'">
     <div class="dropdown-container">
-      <label for="courseDropdown">Course:</label>
+      <label for="courseDropdown">Subject:</label>
       <select id="courseDropdown" [(ngModel)]="selectedCourse">
         <option *ngFor="let course of courses" [value]="course">
           {{ course }}</option>
@@ -147,8 +147,13 @@
           {{ type }}</option>
       </select>
     </div>
+
+    <div *ngIf="!selectedCourse" class="alert alert-warning">
+      Please select a subject before proceeding.
+    </div>
   
     <!-- Assessments Section -->
+    <ng-container *ngIf="selectedCourse">
     <div *ngIf="selectedAssessmentType === 'Quiz'" 
       class="assessments-container">
       <div class="table-container">
@@ -164,8 +169,8 @@
           </thead>
           <tbody>
             <tr>
-              <td><button class="extravagant-button" (click)="addAssessment('Quiz')">
-                Add Quiz</button></td>
+              <td><button class="extravagant-button" (click)="addAssessment(
+                'Quiz')">Add Quiz</button></td>
               <td></td>
               <td></td>
               <td></td>
@@ -346,6 +351,7 @@
         </table>
       </div>
     </div>
+  </ng-container>
 </ng-container>
 
 <div *ngIf="selectedMenu === 'account'">
